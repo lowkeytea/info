@@ -1,0 +1,16 @@
+// Cloudflare Workers static-assets config for the site. No Worker script: everything is served from ./site,
+// with the headers in site/_headers.
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "info",
+  "compatibility_date": "2026-09-01",
+  "assets": {
+    "directory": "./site",
+    // Serve site/404.html (with a 404 status) for paths that don't exist.
+    "not_found_handling": "404-page",
+    // /privacy redirects to /privacy/, which serves privacy/index.html.
+    "html_handling": "auto-trailing-slash"
+  },
+  "workers_dev": true,
+  "preview_urls": false
+}

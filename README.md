@@ -1,6 +1,6 @@
 # lowkeytea.dev
 
-Company site for Lowkey Tea LLC. Plain static files with no build step, made to run on Cloudflare Pages' free plan.
+Company site for Lowkey Tea LLC. Plain static files with no build step, served free from Cloudflare.
 
 ```
 site/                      ← publish this folder
@@ -29,16 +29,17 @@ The look follows the [Scylla's Band voice gallery](https://lowkeytea.github.io/s
 node demo-src/serve.mjs 8080
 ```
 
-Then open <http://127.0.0.1:8080>. This server applies `site/_headers` the way Cloudflare Pages does, which the demo needs for multithreading. `python3 -m http.server --directory site` works for everything except the demo's threads. Use a server rather than opening files from disk. Folder links like `support/` open as directory listings from disk, and browsers refuse to run the demo from a `file://` page.
+Then open <http://127.0.0.1:8080>. This server applies `site/_headers` the way Cloudflare does, which the demo needs for multithreading. `python3 -m http.server --directory site` works for everything except the demo's threads. Use a server rather than opening files from disk. Folder links like `support/` open as directory listings from disk, and browsers refuse to run the demo from a `file://` page.
 
-## Deploy to Cloudflare Pages (free plan)
+## Deploy (Cloudflare Workers, free plan)
 
-Either way, there's no build command, and the output directory is `site`.
+The repo `lowkeytea/info` is connected to a Cloudflare Worker named `info` through Workers Builds, so every push to `main` deploys. There's no Worker script: `wrangler.jsonc` serves `site/` as static assets, with `site/_headers` applied, `site/404.html` for missing paths, and `/dir` redirecting to `/dir/`. The deploy command is plain `npx wrangler deploy`, with no build command.
 
-- **From Git:** push this folder to a GitHub repo, then go to Cloudflare dashboard → Workers & Pages → Create → Pages → Connect to Git. Leave *Build command* empty and set *Build output directory* to `site`.
-- **Direct upload:** `npx wrangler pages deploy site --project-name lowkeytea`, or drag the `site` folder into the dashboard's upload screen.
+- **Custom domain:** Workers & Pages → `info` → Settings → Domains & Routes → Add → Custom domain → `lowkeytea.dev`, then the same again for `www.lowkeytea.dev`. If there's already a DNS record for the name, delete it first under DNS → Records.
+- **`workers.dev` address:** `"workers_dev"` in `wrangler.jsonc` decides whether `info.<account>.workers.dev` stays on. It's re-applied on every deploy, so change it there rather than in the dashboard.
+- **Manual deploy:** `npx wrangler@4 deploy` from this folder, after `npx wrangler@4 login`.
 
-Then add `lowkeytea.dev` under the project's *Custom domains*. The free plan covers this site with room to spare: the largest file is ONNX Runtime's 14.2 MB WebAssembly binary for the demo (the per-file limit is 25 MiB), and the whole site is about 16 MB in 25 files. The model itself comes from Hugging Face, not Cloudflare.
+Static asset requests are free and don't count against the Workers request limit. The largest file is ONNX Runtime's 14.2 MB WebAssembly binary for the demo (the per-file limit is 25 MiB), and the whole site is about 16 MB in 26 files. The model itself comes from Hugging Face, not Cloudflare.
 
 ## Apple organization migration
 
