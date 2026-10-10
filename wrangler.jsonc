@@ -11,6 +11,8 @@
     // /privacy redirects to /privacy/, which serves privacy/index.html.
     "html_handling": "auto-trailing-slash"
   },
-  "workers_dev": true,
+  // Served only on the custom domains added in the dashboard (lowkeytea.dev); no *.workers.dev address and no
+  // per-version preview URLs. These two settings are re-applied on every deploy.
+  "workers_dev": false,
   "preview_urls": false
 }
