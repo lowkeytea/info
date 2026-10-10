@@ -47,7 +47,7 @@ Static asset requests are free and don't count against the Workers request limit
 Things Apple checks for, and where the site covers them:
 
 - **Legal entity name** matches the D-U-N-S record: "Lowkey Tea LLC" appears in the hero, the About facts, the footer and the privacy policy. If the D-U-N-S spelling differs, search and replace `Lowkey Tea LLC` across `site/`.
-- **Website on the organization's own domain,** publicly reachable: `https://lowkeytea.dev`. The contact address is `info@lowkeytea.me`, on a different domain. Both are yours, but if Apple's reviewer asks why they differ, it's easy to make them match: Cloudflare Email Routing (free) can forward `info@lowkeytea.dev` to the existing inbox, and then you'd swap the address on the site.
+- **Website and email on the organization's own domain:** `https://lowkeytea.dev` and `info@lowkeytea.dev`. Cloudflare Email Routing forwards `info@lowkeytea.dev` to the Google Workspace inbox `info@lowkeytea.me`, and replies go out from the `.me` address.
 - **Privacy Policy URL** for App Store Connect: `https://lowkeytea.dev/privacy/`, or a per-app page (below).
 - **Support URL:** `https://lowkeytea.dev/support/`.
 
