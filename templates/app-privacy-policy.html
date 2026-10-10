@@ -1,0 +1,157 @@
+<!doctype html>
+<!--
+  Per-app privacy policy template. Not published: this folder sits outside site/.
+
+  To use it for an app:
+    1. Copy to site/apps/<app-slug>/privacy/index.html (the relative paths below assume that depth).
+    2. Replace every <mark class="todo">…</mark> and delete the sections that don't apply.
+    3. Make the "Data the app collects" table match the answers you give in
+       App Store Connect (App Privacy) and Google Play Console (Data safety). Reviewers compare them.
+    4. Search the file for "todo" before publishing; nothing should be left.
+    5. Add the app to the "Our apps" section of site/privacy/index.html, replacing
+       "No Lowkey Tea apps are available right now."
+    6. Use https://<domain>/apps/<app-slug>/privacy/ as the Privacy Policy URL in both stores,
+       and https://<domain>/support/ as the Support URL.
+
+  Common things to check per app:
+    - Third-party SDKs (analytics, crash reporting, ads, Game Center / Play Games, purchases, cloud sync)
+      each collect data under their own terms. List every one.
+    - If the app lets people create an account, Apple requires account deletion inside the app.
+    - If a game may appeal to children under 13, COPPA and Apple's Kids Category rules apply.
+    - If speech, text or images are processed on device (for example with Scylla's Band), say so plainly.
+-->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>APP NAME privacy policy · Lowkey Tea LLC</title>
+  <meta name="description" content="What APP NAME collects, why, and how to delete it.">
+  <meta name="color-scheme" content="light dark">
+  <link rel="icon" href="../../../favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../../../assets/site.css">
+  <style>
+    /* Template-only highlight. Delete this block when the TODOs are gone. */
+    mark.todo { padding: 0 4px; border-radius: 4px; background: #ffc375; color: #113452; }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="shell header-row">
+      <a class="brand" href="../../../" aria-label="Lowkey Tea, home">
+        <svg class="brand-mark" viewBox="0 0 48 48" aria-hidden="true"><use href="#mark"/></svg>
+        <span class="brand-name">Lowkey Tea</span>
+      </a>
+      <nav aria-label="Main">
+        <a href="../../../#work">Work</a>
+        <a href="../../../#about">About</a>
+        <a href="../../../support/">Support</a>
+        <a href="../../../#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="doc shell" tabindex="-1">
+    <div class="doc-head">
+      <div class="stripe" aria-hidden="true"></div>
+      <p class="eyebrow"><mark class="todo">iOS &middot; Android</mark></p>
+      <h1><mark class="todo">App Name</mark> privacy policy</h1>
+      <p class="lede"><mark class="todo">One plain sentence on the overall answer, e.g. &ldquo;The app works without an account and keeps your data on your device.&rdquo;</mark></p>
+      <p class="updated">Last updated <mark class="todo">Month D, YYYY</mark></p>
+    </div>
+
+    <div class="doc-layout">
+      <nav class="toc" aria-label="On this page">
+        <p>On this page</p>
+        <ol>
+          <li><a href="#collected">Data the app collects</a></li>
+          <li><a href="#on-device">On your device</a></li>
+          <li><a href="#services">Other services</a></li>
+          <li><a href="#account">Accounts and deletion</a></li>
+          <li><a href="#children">Children</a></li>
+          <li><a href="#retention">How long we keep it</a></li>
+          <li><a href="#rights">Your rights</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ol>
+      </nav>
+
+      <article class="prose">
+        <section class="summary" aria-labelledby="summary-title">
+          <h2 id="summary-title">The short version</h2>
+          <ul>
+            <li><mark class="todo">What is collected, in one line (or &ldquo;The app doesn&rsquo;t collect personal data.&rdquo;)</mark></li>
+            <li><mark class="todo">What stays on the device</mark></li>
+            <li><mark class="todo">Whether anything is used for tracking or ads (the honest answer is usually &ldquo;no&rdquo;)</mark></li>
+            <li><mark class="todo">How to delete your data</mark></li>
+          </ul>
+        </section>
+
+        <p>This policy covers <mark class="todo">App Name</mark>, made by Lowkey Tea LLC (&ldquo;we&rdquo;, &ldquo;us&rdquo;), on <mark class="todo">iPhone, iPad and Android</mark>. Our <a href="../../../privacy/">general privacy policy</a> covers this website and email; where the two differ, this page applies to the app.</p>
+
+        <h2 id="collected">Data the app collects</h2>
+        <p><mark class="todo">Keep one row per data type, using the same categories as App Store Connect and Google Play. If the app collects nothing, replace the table with &ldquo;The app doesn&rsquo;t collect any data from you.&rdquo;</mark></p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th scope="col">Data</th><th scope="col">Why</th><th scope="col">Linked to you?</th><th scope="col">Shared with</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><mark class="todo">Diagnostics (crash logs)</mark></td><td><mark class="todo">Fixing crashes</mark></td><td><mark class="todo">No</mark></td><td><mark class="todo">Crash reporting provider</mark></td></tr>
+              <tr><td><mark class="todo">Purchases</mark></td><td><mark class="todo">Unlocking what you bought</mark></td><td><mark class="todo">Yes</mark></td><td><mark class="todo">Apple / Google (they process payment)</mark></td></tr>
+              <tr><td><mark class="todo">Game progress</mark></td><td><mark class="todo">Saving and syncing your progress</mark></td><td><mark class="todo">Yes</mark></td><td><mark class="todo">iCloud / Google Play Games</mark></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>We don&rsquo;t use data from this app to track you across other companies&rsquo; apps or websites, and we don&rsquo;t sell it. <mark class="todo">Delete or change this sentence if it isn&rsquo;t true.</mark></p>
+
+        <h2 id="on-device">On your device</h2>
+        <p><mark class="todo">Describe anything processed locally and never uploaded, e.g. &ldquo;Speech is generated on your device with Scylla&rsquo;s Band. The text it reads aloud is never sent to us.&rdquo; Mention any permissions the app asks for (microphone, camera, photos, motion) and what each is used for.</mark></p>
+
+        <h2 id="services">Other services</h2>
+        <p>The app uses these services, which handle data under their own policies:</p>
+        <ul>
+          <li><mark class="todo">Service name: what it does in the app, link to its privacy policy</mark></li>
+        </ul>
+
+        <h2 id="account">Accounts and deletion</h2>
+        <p><mark class="todo">Either &ldquo;The app doesn&rsquo;t have accounts. Deleting the app removes its data from your device.&rdquo; or explain how to delete an account inside the app (required by Apple when accounts exist) and what deletion removes from our servers.</mark></p>
+
+        <h2 id="children">Children</h2>
+        <p><mark class="todo">If the app isn&rsquo;t for children: &ldquo;The app isn&rsquo;t directed at children under 13, and we don&rsquo;t knowingly collect personal information from them.&rdquo; If it may appeal to children, describe the COPPA-compliant practices instead, and check Apple&rsquo;s Kids Category rules.</mark></p>
+
+        <h2 id="retention">How long we keep it</h2>
+        <p><mark class="todo">For each kind of data held off the device: how long it is kept, and what triggers deletion.</mark></p>
+
+        <h2 id="rights">Your rights</h2>
+        <p>You can ask whether we hold personal information about you, ask for a copy, ask us to correct it, or ask us to delete it. Email <a href="mailto:info@lowkeytea.me">info@lowkeytea.me</a> with &ldquo;Privacy request&rdquo; in the subject, and we&rsquo;ll respond within 30 days.</p>
+
+        <h2 id="contact">Contact</h2>
+        <p>Lowkey Tea LLC<br>Washington, United States<br><a href="mailto:info@lowkeytea.me">info@lowkeytea.me</a></p>
+      </article>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="shell footer-row">
+      <p>&copy; 2026 Lowkey Tea LLC &middot; Washington, United States</p>
+      <nav aria-label="Footer">
+        <a href="../../../privacy/">Privacy</a>
+        <a href="../../../support/">Support</a>
+        <a href="https://github.com/lowkeytea">GitHub</a>
+      </nav>
+    </div>
+  </footer>
+
+  <svg class="sprite" aria-hidden="true">
+    <symbol id="mark" viewBox="0 0 48 48">
+      <rect x="12" y="7" width="5" height="11" rx="2.5" fill="#c83b2d"/>
+      <rect x="19.5" y="3.5" width="5" height="14.5" rx="2.5" fill="#f29a59"/>
+      <rect x="27" y="9.5" width="5" height="8.5" rx="2.5" fill="#0c7d86"/>
+      <path d="M34 25.5h2.5a5.5 5.5 0 0 1 0 11H33" fill="none" stroke="currentColor" stroke-width="3.6" stroke-linecap="round"/>
+      <path d="M8 21h28v13a9 9 0 0 1-9 9H17a9 9 0 0 1-9-9z" fill="currentColor"/>
+      <rect x="8" y="27" width="28" height="4" fill="#ffc375"/>
+    </symbol>
+  </svg>
+</body>
+</html>
