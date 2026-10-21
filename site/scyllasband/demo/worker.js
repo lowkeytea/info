@@ -1,22 +1,46 @@
 // Runs Scylla's Band off the main thread: downloads and verifies the pinned model files, keeps them in Cache Storage,
-// and drives the WebAssembly build of libscyllasband, whose graph calls go to ONNX Runtime Web.
-import * as ort from './ort/ort.wasm.min.mjs';
+// and drives the WebAssembly build of libscyllasband, whose graph calls go to ONNX Runtime Web: on the GPU through
+// WebGPU when the browser has an adapter (the `webgpu` bundle), otherwise on the CPU in WebAssembly (the `onnx` bundle).
 import createScyllasBand from './engine/scyllasband.mjs';
 
 const CACHE = 'scyllasband-model-v1';
+const ORT_VERSION = '1.30.0';
+// ONNX Runtime Web's WebGPU build without JSPI needs a 25.5 MiB WebAssembly file, over the host's 25 MiB per-file limit,
+// so that one file comes from the npm CDN (CORS, so it loads under COEP). Browsers with JSPI use the 16 MiB build here.
+const ASYNCIFY_WASM = `https://cdn.jsdelivr.net/npm/onnxruntime-web@${ORT_VERSION}/dist/ort-wasm-simd-threaded.asyncify.wasm`;
 const post = (message, transfer = []) => self.postMessage(message, transfer);
 
-ort.env.wasm.wasmPaths = new URL('./ort/', import.meta.url).href;
-ort.env.wasm.numThreads = self.crossOriginIsolated ? Math.max(1, Math.min(4, (navigator.hardwareConcurrency || 2) - 1)) : 1;
-
-let pin, byPath, manifest, engine, runtime, shared;
-let cancelled = false;
+let ort, backend, pin, files, byPath, manifest, engine, runtime, shared;
+let cancelled = false, warming = false;
 const sessions = new Map();
 
-async function loadPin() {
+// WebGPU when an adapter is available (and not turned off with ?backend=cpu), else WebAssembly on the CPU.
+async function chooseBackend(preference) {
+  if (backend) return backend;
+  let adapter = null;
+  if (preference !== 'cpu' && self.navigator?.gpu) {
+    try { adapter = await navigator.gpu.requestAdapter({ powerPreference: 'high-performance' }); } catch { adapter = null; }
+  }
+  if (adapter) {
+    const jspi = typeof WebAssembly.Suspending === 'function';
+    backend = { kind: 'webgpu', flavor: 'webgpu', build: jspi ? 'jspi' : 'webgpu', adapter: adapter.info?.vendor || '' };
+  } else {
+    backend = { kind: 'wasm', flavor: 'wasm', build: 'wasm' };
+  }
+  ort = await import(`./ort/ort.${backend.build}.min.mjs`);
+  ort.env.wasm.wasmPaths = backend.build === 'webgpu'
+    ? { mjs: new URL('./ort/ort-wasm-simd-threaded.asyncify.mjs', import.meta.url).href, wasm: ASYNCIFY_WASM }
+    : new URL('./ort/', import.meta.url).href;
+  ort.env.wasm.numThreads = self.crossOriginIsolated ? Math.max(1, Math.min(4, (navigator.hardwareConcurrency || 2) - 1)) : 1;
+  return backend;
+}
+
+async function loadPin(preference) {
   if (!pin) {
     pin = await (await fetch(new URL('./model-files.json', import.meta.url))).json();
-    byPath = new Map(pin.files.map((f) => [f.path, f]));
+    await chooseBackend(preference);
+    files = pin.flavors[backend.flavor].files;
+    byPath = new Map(files.map((f) => [f.path, f]));
   }
   return pin;
 }
@@ -24,7 +48,7 @@ async function loadPin() {
 async function missingFiles() {
   const cache = await caches.open(CACHE);
   const have = new Set((await cache.keys()).map((r) => r.url));
-  return pin.files.filter((f) => !have.has(f.url));
+  return files.filter((f) => !have.has(f.url));
 }
 
 async function sha256(bytes) {
@@ -35,7 +59,7 @@ async function sha256(bytes) {
 async function download() {
   const cache = await caches.open(CACHE);
   // Drop files from an earlier pinned revision so they don't take up space next to the current one.
-  const pinned = new Set(pin.files.map((f) => f.url));
+  const pinned = new Set(files.map((f) => f.url));
   for (const request of await cache.keys()) if (!pinned.has(request.url)) await cache.delete(request);
   const todo = await missingFiles();
   const total = todo.reduce((a, f) => a + f.size, 0);
@@ -73,7 +97,7 @@ function session(name) {
   if (!sessions.has(name)) {
     sessions.set(name, (async () => {
       const model = await read(manifest.components[name].artifacts.onnx.path);
-      const options = { executionProviders: ['wasm'], graphOptimizationLevel: 'all' };
+      const options = { executionProviders: [backend.kind === 'webgpu' ? 'webgpu' : 'wasm'], graphOptimizationLevel: 'all' };
       if (name !== 'g2p') {
         shared ??= await read('onnx/components/shared_weights.bin');
         options.externalData = [{ path: 'shared_weights.bin', data: shared }];
@@ -87,11 +111,13 @@ function session(name) {
 async function runGraph(name, inputs) {
   if (cancelled) throw new Error('cancelled');
   if (name === 'g2p') {
-    // The G2P input is zero-padded and masked; running only the used width (rounded up to 32) gives the same result.
+    // The G2P input is zero-padded and masked; running only the used width gives the same result. On the CPU the width
+    // is rounded up to 32; on the GPU to a power of two from 32, since each new input shape compiles new shaders.
     const ids = inputs[0].data;
     let used = ids.length;
     while (used > 1 && ids[used - 1] === 0n) used--;
-    const width = Math.min(ids.length, Math.ceil(used / 32) * 32);
+    const step = backend.kind === 'webgpu' ? 2 ** Math.ceil(Math.log2(Math.max(32, used))) : Math.ceil(used / 32) * 32;
+    const width = Math.min(ids.length, step);
     inputs = [{ ...inputs[0], data: ids.slice(0, width), shape: [1, width] }];
   }
   const s = await session(name);
@@ -103,6 +129,7 @@ async function runGraph(name, inputs) {
 
 // Event types from scyllasband.h: 1 plan, 2 chunk started, 3 audio, 4 done.
 function onEvent(type, chunkIndex, chunkCount, samples) {
+  if (warming) return 0;
   if (type === 2) post({ type: 'chunk', index: chunkIndex, count: chunkCount });
   if (type === 3 && samples) {
     const copy = samples.slice();
@@ -126,7 +153,17 @@ async function start() {
   for (const component of Object.values(manifest.components)) put(component.artifacts.onnx.path, new Uint8Array(0));
   runtime = engine.ccall('sb_create', 'number', ['string'], ['/bundle']);
   if (!runtime) throw new Error(engine.ccall('scyllasband_last_error', 'string', [], []));
-  post({ type: 'ready', threads: ort.env.wasm.numThreads });
+  // One short sentence, unheard, loads every graph a first request needs (and on the GPU compiles their shaders), so
+  // the visitor's first request starts as quickly as later ones.
+  post({ type: 'warming' });
+  warming = true;
+  try {
+    await engine.ccall('sb_stream', 'number', ['number', 'string', 'string', 'string', 'string', 'number', 'number'],
+      [runtime, 'Hello there.', 'scylla', 'en', 'energy=2,tension=2,valence=2,assertiveness=2', 1, -1], { async: true });
+  } finally {
+    warming = false;
+  }
+  post({ type: 'ready', backend: backend.kind, adapter: backend.adapter, threads: ort.env.wasm.numThreads });
 }
 
 async function speak({ text, voice, language, delivery, speed }) {
@@ -145,11 +182,12 @@ async function speak({ text, voice, language, delivery, speed }) {
 self.onmessage = async ({ data }) => {
   try {
     if (data.type === 'status') {
-      await loadPin();
+      await loadPin(data.backend);
       const missing = await missingFiles();
-      post({ type: 'status', pin: { ...pin, files: undefined }, missingBytes: missing.reduce((a, f) => a + f.size, 0) });
+      post({ type: 'status', pin: { ...pin, flavors: undefined, bytes: pin.flavors[backend.flavor].bytes, backend: backend.kind },
+             missingBytes: missing.reduce((a, f) => a + f.size, 0) });
     } else if (data.type === 'start') {
-      await loadPin();
+      await loadPin(data.backend);
       await start();
     } else if (data.type === 'speak') {
       await speak(data);

@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; worker-src 'self'; connect-src 'self'; media-src 'self' blob:; img-src 'self' data:; style-src 'self'; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'">
   <title>Try Scylla's Band · Lowkey Tea LLC</title>
-  <meta name="description" content="Type something and hear it in one of Scylla's Band's ten voices. The model downloads once and runs in your browser.">
+  <meta name="description" content="Type something and hear it in one of Scylla's Band's fourteen voices. The model downloads once and runs in your browser.">
   <meta name="color-scheme" content="light dark">
   <meta name="theme-color" content="#fff7e8" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#0c1f33" media="(prefers-color-scheme: dark)">
@@ -13,7 +13,7 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Lowkey Tea LLC">
   <meta property="og:title" content="Try Scylla's Band">
-  <meta property="og:description" content="Type something and hear it in one of ten voices. The model runs in your browser.">
+  <meta property="og:description" content="Type something and hear it in one of fourteen voices. The model runs in your browser.">
   <meta property="og:url" content="https://lowkeytea.dev/scyllasband/demo/">
   <meta property="og:image" content="https://lowkeytea.dev/assets/og.png">
   <meta property="og:image:width" content="1200">
@@ -50,7 +50,7 @@
       <div class="stripe" aria-hidden="true"></div>
       <p class="eyebrow">Scylla&rsquo;s Band demo</p>
       <h1>Try it in your browser</h1>
-      <p class="lede">Type something and hear it in any of the ten voices. The model runs on your own computer, inside this page.</p>
+      <p class="lede">Type something and hear it in any of the fourteen voices. The model runs on your own computer, inside this page.</p>
     </div>
 
     <section class="notice" aria-labelledby="notice-title">
@@ -58,7 +58,7 @@
       <ul>
         <li><strong>It&rsquo;s a <span data-size>261 MB</span> download.</strong> Your browser fetches the model from Hugging Face once and keeps it, so later visits start without downloading. You can delete it at the bottom of this page.</li>
         <li><strong>It needs about 1 GB of free memory</strong> while it runs. Tested in desktop Chrome. Phones and tablets may run out of memory.</li>
-        <li><strong>It&rsquo;s slower than the native runtime.</strong> Speech is generated on your CPU in WebAssembly, several times slower than the Python or C++ runtime. On a recent desktop it still runs ahead of playback, so audio starts within a few seconds.</li>
+        <li><strong>Speed depends on your browser.</strong> Where WebGPU is available, as in recent Chrome and Edge, speech is generated on your GPU, many times faster than playback. Elsewhere it runs on your CPU in WebAssembly, several times slower than the Python or C++ runtime; on a recent desktop that still runs ahead of playback.</li>
         <li><strong>Nothing you type leaves your computer.</strong> The only network traffic is the model download.</li>
       </ul>
       <div class="notice-actions">
@@ -88,11 +88,15 @@
             <option value="felix">Felix</option>
             <option value="gwen">Gwen</option>
             <option value="ink">Ink</option>
+            <option value="kincade">Kincade</option>
             <option value="max">Max</option>
             <option value="orpheus">Orpheus</option>
+            <option value="poppy">Poppy</option>
+            <option value="priya">Priya</option>
             <option value="rex">Rex</option>
             <option value="scylla" selected>Scylla</option>
             <option value="stone">Stone</option>
+            <option value="thistle">Thistle</option>
             <option value="tuesday">Tuesday</option>
           </select>
         </div>

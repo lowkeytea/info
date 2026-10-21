@@ -68,16 +68,19 @@ Things Apple checks for, and where the site covers them:
 
 `site/scyllasband/demo/` runs Scylla's Band in the visitor's browser, and nothing is hosted besides the page itself.
 
-- **Model:** downloaded from Hugging Face on the visitor's click, at the exact commit and SHA-256 hashes listed in `model-files.json`. It's 261 MB, kept in Cache Storage and deletable from the page.
-- **Engine:** `engine/scyllasband.wasm` is the unmodified `libscyllasband` C++ engine and text front end compiled with Emscripten. Its graph calls go to ONNX Runtime Web 1.30.0 (`ort/`, plain WASM build, MIT), running in `worker.js`.
+- **Model:** downloaded from Hugging Face on the visitor's click, at the exact commit and SHA-256 hashes listed in `model-files.json`, kept in Cache Storage and deletable from the page. The worker downloads one of two bundles: `webgpu/` (342 MB) where the browser has a WebGPU adapter, otherwise `onnx/` (337 MB).
+- **Engine:** `engine/scyllasband.wasm` is the unmodified `libscyllasband` C++ engine and text front end compiled with Emscripten. Its graph calls go to ONNX Runtime Web 1.30.0 (`ort/`, MIT), running in `worker.js`:
+  - **GPU:** the WebGPU backend. Browsers with JSPI (recent Chrome and Edge) use `ort.jspi.min.mjs` and its 16 MiB WebAssembly file. Other WebGPU browsers use `ort.webgpu.min.mjs`, whose 25.5 MiB `ort-wasm-simd-threaded.asyncify.wasm` is over the host's 25 MiB per-file limit, so the worker loads that one file from the jsDelivr npm CDN (CORS, so it loads under COEP).
+  - **CPU:** the plain WASM build (`ort.wasm.min.mjs`). `?backend=cpu` forces it where WebGPU is available, for comparing the two.
+  - Before reporting ready, the worker speaks one unheard sentence so every graph a first request needs is loaded (and its GPU shaders compiled).
 - **Headers:** `_headers` gives `/scyllasband/demo/*` COOP/COEP (needed for threads) and removes the site-wide CSP; the page sets its own CSP in a `<meta>` tag.
-- **Measured in desktop Chrome** (Ryzen 7 7800X3D, 4 threads, with a training job running on the same machine): about 5× faster than real time once loaded, and first sound after about 1 s. The first request after loading takes about 2 s while the graphs initialize. The native runtime is roughly 35× on a desktop CPU.
+- **Measured in desktop Chrome** (release v2-20261020, a three-sentence passage of about 11 s): on the GPU (NVIDIA RTX PRO 6000, WebGPU) about 60× faster than real time with first sound after 0.1 s; on the CPU (Ryzen 7 7800X3D, 4 threads) about 3× with first sound after 1.4 s. The native LiteRT runtime is about 33× on that CPU with 8 threads.
 
 To update it:
 
-- **New model release:** `node demo-src/pin-model.mjs <tag-or-commit>` rewrites `model-files.json`. Visitors' browsers drop the old files and download the new ones.
+- **New model release:** `node demo-src/pin-model.mjs <tag-or-commit>` rewrites `model-files.json` with both bundles. Visitors' browsers drop the old files and download the new ones. Before an upload, `node demo-src/pin-model.mjs --local <base-url> <onnx-dir> <webgpu-dir>` pins local copies for testing (don't commit that pin).
 - **New runtime version:** `EMSDK=/path/to/emsdk demo-src/build-wasm.sh /path/to/scyllasband` rebuilds `engine/` from a checkout. `demo-src/scyllasband_graph_js.cpp` is the only code beyond the stock engine. It belongs upstream in `libscyllasband` eventually.
-- **ONNX Runtime Web:** keep the `/wasm` build (`ort.wasm.min.mjs`). The default `onnxruntime-web` import (JSEP) gave wrong results with these graphs.
+- **ONNX Runtime Web:** the CPU path uses the `/wasm` build (`ort.wasm.min.mjs`); the default `onnxruntime-web` import (JSEP) gave wrong results with the v2-20261006 graphs. The GPU path uses the `jspi` and `webgpu` builds, whose outputs match ONNX Runtime on the CPU for every graph of the `webgpu/` bundle.
 
 ## Notes on what's linked
 

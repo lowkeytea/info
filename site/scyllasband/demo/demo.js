@@ -7,6 +7,8 @@ const els = Object.fromEntries(['start', 'progress', 'progress-bar', 'progress-t
   'model-info'].map((id) => [id, $(id)]));
 
 const SAMPLE_RATE = 24000;
+// ?backend=cpu keeps the demo on WebAssembly even where WebGPU is available (for comparing the two).
+const BACKEND = new URLSearchParams(location.search).get('backend') === 'cpu' ? 'cpu' : 'auto';
 const BRITISH = new Set(['ink', 'orpheus', 'tuesday']);
 const SAMPLES = {
   en: "The last train leaves at midnight, so pack light, bring a warm coat, and don't forget the map.",
@@ -38,7 +40,7 @@ function createWorker() {
   worker = new Worker(new URL('./worker.js', import.meta.url), { type: 'module' });
   worker.onmessage = ({ data }) => handlers[data.type]?.(data);
   worker.onerror = (event) => fail(event.message || 'The demo could not start in this browser.');
-  worker.postMessage({ type: 'status' });
+  worker.postMessage({ type: 'status', backend: BACKEND });
 }
 
 function fail(message) {
@@ -55,8 +57,9 @@ const handlers = {
   status({ pin: p, missingBytes }) {
     pin = p;
     document.querySelectorAll('[data-size]').forEach((el) => { el.textContent = mb(pin.bytes); });
-    els['model-info'].textContent = `Model: ${pin.repo} at revision ${pin.revision.slice(0, 7)} (${pin.ref}). ` +
-      'Runtime: libscyllasband compiled to WebAssembly, with ONNX Runtime Web 1.30.0.';
+    els['model-info'].textContent = `Model: ${pin.repo} at revision ${pin.revision.slice(0, 7)} (${pin.ref}), ` +
+      `${pin.backend === 'webgpu' ? 'WebGPU' : 'ONNX'} bundle. Runtime: libscyllasband compiled to WebAssembly, with ONNX Runtime ` +
+      `Web 1.30.0 on ${pin.backend === 'webgpu' ? 'the GPU (WebGPU)' : 'the CPU (WebAssembly)'}.`;
     const stored = missingBytes === 0;
     els['storage-text'].textContent = stored
       ? `The model (${mb(pin.bytes)}) is stored in this browser.`
@@ -71,14 +74,18 @@ const handlers = {
     els['progress-bar'].value = total ? received / total : 1;
     els['progress-text'].textContent = `Downloading: ${mb(received)} of ${mb(total)}`;
   },
-  ready({ threads }) {
+  warming() {
+    els['progress-text'].textContent = 'Preparing the voices…';
+  },
+  ready({ backend, threads }) {
     ready = true;
     els.progress.hidden = true;
     els.start.hidden = true;
     els.studio.setAttribute('aria-disabled', 'false');
     els.speak.disabled = false;
-    setStatus(`Ready. Running on ${threads} CPU thread${threads === 1 ? '' : 's'}.`);
-    worker.postMessage({ type: 'status' });
+    setStatus(backend === 'webgpu' ? 'Ready. Running on your GPU with WebGPU.'
+      : `Ready. Running on ${threads} CPU thread${threads === 1 ? '' : 's'}.`);
+    worker.postMessage({ type: 'status', backend: BACKEND });
   },
   chunk({ index, count }) {
     if (!chunks.length) setStatus(`Generating sentence ${index + 1} of ${count}…`);
@@ -185,7 +192,7 @@ els.start.addEventListener('click', async () => {
   els.progress.hidden = false;
   els['progress-text'].textContent = 'Preparing…';
   try { await navigator.storage?.persist?.(); } catch { /* storage stays best-effort */ }
-  worker.postMessage({ type: 'start' });
+  worker.postMessage({ type: 'start', backend: BACKEND });
 });
 
 els.speak.addEventListener('click', async () => {
