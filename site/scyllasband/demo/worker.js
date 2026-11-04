@@ -159,7 +159,7 @@ async function start() {
   warming = true;
   try {
     await engine.ccall('sb_stream', 'number', ['number', 'string', 'string', 'string', 'string', 'number', 'number'],
-      [runtime, 'Hello there.', 'scylla', 'en', 'energy=2,tension=2,valence=2,assertiveness=2', 1, -1], { async: true });
+      [runtime, 'Hello there.', 'scylla', 'en', '', 1, -1], { async: true });
   } finally {
     warming = false;
   }

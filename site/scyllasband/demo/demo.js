@@ -18,16 +18,15 @@ const SAMPLES = {
   de: 'Der letzte Zug fährt um Mitternacht, also reise mit leichtem Gepäck, nimm einen warmen Mantel mit und vergiss die Karte nicht.',
   vi: 'Chuyến tàu cuối cùng rời ga lúc nửa đêm, nên hãy mang hành lý gọn nhẹ, một chiếc áo khoác ấm, và đừng quên bản đồ.',
 };
-// The delivery presets from the Scylla's Band README.
+// Quick settings for the three delivery controls (0 is the voice's own delivery; the emotion comes from the text).
 const PRESETS = {
-  neutral: { energy: 2, tension: 2, valence: 2, assertiveness: 2 },
-  calm: { energy: 1.8, tension: 1, valence: 2.2, assertiveness: 2.1 },
-  assertive: { energy: 2.3, tension: 2.4, valence: 2.1, assertiveness: 2.4 },
-  joyful: { energy: 2.3, tension: 2, valence: 2.2, assertiveness: 2.2 },
-  angry: { energy: 2.3, tension: 2.4, valence: 1.4, assertiveness: 2.4 },
-  sad: { energy: 1.7, tension: 1.5, valence: 1.4, assertiveness: 2 },
+  default: { intensity: 0, pace: 0, pitch: 0 },
+  calm: { intensity: -1.5, pace: -0.5, pitch: 0 },
+  intense: { intensity: 1.5, pace: 0, pitch: 0 },
+  slower: { intensity: 0, pace: -1, pitch: 0 },
+  faster: { intensity: 0, pace: 1, pitch: 0 },
 };
-const AXES = Object.keys(PRESETS.neutral);
+const AXES = Object.keys(PRESETS.default);
 
 const mb = (bytes) => `${Math.round(bytes / 1e6)} MB`;
 let worker, pin, ready = false, firstRun = true;
@@ -170,7 +169,9 @@ function wav(samples) {
   return new Blob([view], { type: 'audio/wav' });
 }
 
+// "Voice default" sends no delivery, so each voice speaks at the model's own default for it.
 function delivery() {
+  if (document.querySelector('input[name="preset"][value="default"]')?.checked) return '';
   return AXES.map((axis) => `${axis}=${$(axis).value}`).join(',');
 }
 
