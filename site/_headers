@@ -8,6 +8,11 @@
 /assets/fonts/*
   Cache-Control: public, max-age=31536000, immutable
 
+# Pre-generated Scylla's Band samples (the voice gallery at lowkeytea.github.io/scyllasband plays them from here).
+/scyllasband/samples/*
+  Cache-Control: public, max-age=604800
+  Access-Control-Allow-Origin: *
+
 # The demo page sets its own CSP in a <meta> tag; its worker compiles WebAssembly and fetches the model from
 # Hugging Face, which the site-wide policy blocks. COOP + COEP make the page cross-origin isolated, which
 # ONNX Runtime Web needs for multithreading.

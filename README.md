@@ -8,6 +8,9 @@ site/                      ← publish this folder
   privacy/index.html       privacy policy: website, email, Scylla's Band, app index
   support/index.html       support page (use as the App Store / Play "Support URL")
   scyllasband/demo/        in-browser Scylla's Band demo (the only page with JavaScript)
+  scyllasband/samples/     pre-generated Scylla's Band samples: the voice gallery's 170 clips (every voice, six languages, six deliveries,
+                           narration, dialogue) and singing/ (the Ghost in the Machine demo track, the Kitchen Patter example); the
+                           gallery page in the scyllasband repository plays them from here, so samples update without a runtime commit
   404.html                 served for missing paths (see wrangler.jsonc)
   _headers                 security headers + font caching (Cloudflare _headers format)
   robots.txt, sitemap.xml
@@ -40,7 +43,7 @@ The repo `lowkeytea/info` is connected to a Cloudflare Worker named `info` throu
 - **`workers.dev` address and preview URLs:** both are off (`"workers_dev": false`, `"preview_urls": false` in `wrangler.jsonc`). These are re-applied on every deploy, so change them there rather than in the dashboard.
 - **Manual deploy:** `npx wrangler@4 deploy` from this folder, after `npx wrangler@4 login`.
 
-Static asset requests are free and don't count against the Workers request limit. The largest file is ONNX Runtime's 14.2 MB WebAssembly binary for the demo (the per-file limit is 25 MiB), and the whole site is about 16 MB in 26 files. The model itself comes from Hugging Face, not Cloudflare.
+Static asset requests are free and don't count against the Workers request limit. The largest file is ONNX Runtime's 14.2 MB WebAssembly binary for the demo (the per-file limit is 25 MiB), and the whole site is about 33 MB in about 200 files, half of it the samples. The model itself comes from Hugging Face, not Cloudflare.
 
 ## Apple organization migration
 
