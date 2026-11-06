@@ -239,7 +239,7 @@ def render_page(ctx: dict) -> str:
           <p class="kicker">{KIND_NAMES[p["kind"]]} &middot; {duration(p["seconds"])}</p>
           <h3>{escape(p["title"])}</h3>
           <p class="meta">{" &middot; ".join(v.title() for v in p["voices"])} &middot; {p["words"]} words &middot; {p["cues"]} cues, {p["sung_cues"]} sung</p>
-          <p class="summary">{escape(p["summary"])}</p>
+          <p class="blurb">{escape(p["summary"])}</p>
           {audio_tag(p["src"], p["title"])}
           <details class="how">
             <summary>How it was made</summary>
@@ -260,7 +260,7 @@ def render_page(ctx: dict) -> str:
           <p class="kicker">Patter &middot; {duration(patter["seconds"])}</p>
           <h3>{escape(patter["title"])}</h3>
           <p class="meta">{patter["voice"].title()} &middot; one score, one command</p>
-          <p class="summary">{escape(patter["summary"])}</p>
+          <p class="blurb">{escape(patter["summary"])}</p>
           {audio_tag(patter["src"], patter["title"])}
           <details class="how">
             <summary>How it was made</summary>
@@ -279,7 +279,7 @@ def render_page(ctx: dict) -> str:
           <p class="kicker">Speech &middot; {duration(item["seconds"])}</p>
           <h3>{escape(item["title"])}</h3>
           <p class="meta">{who} &middot; {where} &middot; {item["words"]} words</p>
-          <p class="summary">{escape(item["summary"])}</p>
+          <p class="blurb">{escape(item["summary"])}</p>
           {audio_tag(item["src"], item["title"])}
           {source}
         </article>''')
