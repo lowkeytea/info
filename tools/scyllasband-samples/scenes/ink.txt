@@ -1,0 +1,4 @@
+[ink:en_gb:intensity=0.2] Right, this is the last tour of the day, which means two things: you get the good stories, and I get to go home when they're finished.
+[ink:en_gb:intensity=-0.4,pace=-0.3] This clock in front of you has not worked since eighteen ninety-two. Nobody has tried to fix it, because the man who built it left a note asking them not to.
+[ink:en_gb:intensity=0.9,pace=0.3] And every single year, somebody asks if they can have a go. No! You cannot have a go!
+[ink:en_gb:intensity=-0.3] Although, between us, I've had a look inside. It's a spring. It's just a very tired spring.

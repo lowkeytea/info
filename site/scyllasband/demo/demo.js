@@ -223,6 +223,12 @@ els.delete.addEventListener('click', () => {
 });
 
 els.voice.addEventListener('change', updateEnglishLabel);
+// ?voice=<id> opens the demo on that voice (the sample page links here from each voice's card).
+const wantedVoice = new URLSearchParams(location.search).get('voice');
+if (wantedVoice && [...els.voice.options].some((option) => option.value === wantedVoice)) {
+  els.voice.value = wantedVoice;
+  updateEnglishLabel();
+}
 els.language.addEventListener('change', () => {
   if (Object.values(SAMPLES).includes(els.text.value)) { els.text.value = SAMPLES[els.language.value]; updateCount(); }
 });

@@ -1,0 +1,63 @@
+/* Scylla's Band sample page. Builds on ../../assets/site.css tokens. */
+
+.doc-head .eyebrow { margin-bottom: 14px; }
+.doc-head .actions { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 28px; margin-top: 28px; }
+.doc-head .link-row { margin: 0; }
+
+.section-nav {
+  display: flex; flex-wrap: wrap; gap: 8px; margin: 40px 0 0; padding: 0;
+}
+.section-nav a {
+  display: inline-block; padding: 6px 14px; border: 1.5px solid var(--line-soft); border-radius: 999px;
+  background: var(--card); color: var(--ink); font-weight: 700; font-size: .92rem; text-decoration: none;
+}
+.section-nav a:hover { border-color: var(--line); color: var(--link); }
+.section-nav a:nth-child(-n+3) { border-color: var(--line); background: var(--ink); color: var(--paper); }
+.section-nav a:nth-child(-n+3):hover { color: var(--apricot); }
+
+.block { margin-top: 64px; }
+.block .section-head p { max-width: 46rem; }
+
+.pieces, .voices { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.piece, .voice {
+  display: flex; flex-direction: column; gap: 10px; min-width: 0; padding: clamp(20px, 3vw, 28px);
+  border: 1.5px solid var(--line); border-radius: var(--radius); background: var(--card); box-shadow: var(--shadow);
+  border-top-width: 8px;
+}
+.piece-pop { border-top-color: var(--coral); }
+.piece-rap { border-top-color: var(--orange); }
+.piece-ballad { border-top-color: var(--teal); }
+.piece-long { border-top-color: var(--seafoam); }
+.piece .kicker { margin: 0; }
+.piece h3, .voice h3 { margin: 0; font-size: 1.45rem; font-weight: 800; letter-spacing: -.02em; line-height: 1.15; text-wrap: balance; }
+.piece .meta, .voice .label span { color: var(--muted); font-size: .9rem; font-weight: 600; }
+.piece .meta { margin: 0; }
+.piece .summary { margin: 0; color: var(--muted); }
+.piece audio, .voice audio { width: 100%; margin-top: 6px; }
+.piece .text-link { align-self: flex-start; }
+
+details.how, details.scene-text { margin-top: 4px; }
+details summary { cursor: pointer; font-weight: 800; color: var(--link); list-style: none; }
+details summary::-webkit-details-marker { display: none; }
+details summary::before { content: "+ "; }
+details[open] summary::before { content: "\2013  "; }
+details p { color: var(--muted); font-size: .95rem; margin: 10px 0 0; }
+details .snippet-name { margin: 14px 0 4px; font-size: .82rem; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: var(--kicker); }
+details pre {
+  margin: 0; padding: 12px 14px; overflow-x: auto; border-radius: 12px; background: var(--term-bg); color: var(--term-ink);
+  font: 500 .8rem/1.5 var(--mono); white-space: pre; tab-size: 2;
+}
+details .text-link { display: inline-block; margin-top: 14px; }
+
+.voice-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+.voice-head span { color: var(--kicker); font-size: .86rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+.voice .row { display: flex; flex-direction: column; gap: 4px; padding-top: 12px; border-top: 1px solid var(--line-soft); }
+.voice .label { margin: 0; font-weight: 800; display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; }
+.voice .scene-text p { line-height: 1.55; }
+.voice .try { margin-top: 10px; font-weight: 800; align-self: flex-start; }
+
+.render-note { margin: 56px 0 0; color: var(--muted); font-size: .92rem; max-width: 46rem; }
+
+@media (max-width: 760px) {
+  .pieces, .voices { grid-template-columns: 1fr; }
+}

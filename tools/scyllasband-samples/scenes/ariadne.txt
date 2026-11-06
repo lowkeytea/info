@@ -1,0 +1,5 @@
+[ariadne:en_us:intensity=-0.5,pace=-0.3] Keeper's log, the fourth of November. Wind out of the northwest, sea running high, lamp lit at a quarter past five.
+[ariadne:en_us] Two boats went past before dark, both of them close enough to wave, so I waved.
+[ariadne:en_us:intensity=0.8,pace=0.3] Then the radio went, and it was the ferry, and the ferry never calls unless something's wrong!
+[ariadne:en_us:intensity=-0.3,pace=-0.2] It wasn't. They wanted to know if the café on the point still does the fish pie on Thursdays.
+[ariadne:en_us:intensity=0.4] It does. I told them it does. And then I sat here for an hour, wondering why I know that.

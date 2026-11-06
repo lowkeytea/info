@@ -1,0 +1,4 @@
+[thistle:en_us:intensity=-0.2,pace=-0.2] First warm day. The ground's still cold if you dig past your knuckles, but the top's ready, and the top is all you need for peas.
+[thistle:en_us:intensity=0.5,pace=0.2] I've got a plan for the back bed this year: beans up the fence, squash underneath, and sunflowers along the wall so the neighbors stop asking what I'm doing.
+[thistle:en_us:intensity=1.0,pace=0.3] Last year the squirrels took every single sunflower seed the day I planted them. Every one! I watched it happen!
+[thistle:en_us:intensity=-0.7,pace=-0.4] This year I'm planting twice as many. Half for me, half for them. Call it a truce.

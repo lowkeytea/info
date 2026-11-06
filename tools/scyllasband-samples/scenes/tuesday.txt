@@ -1,0 +1,4 @@
+[tuesday:en_gb:intensity=0.2] Good evening, this is the nineteen forty to the coast, calling at all the usual places, and one unusual place, because the signal's gone again.
+[tuesday:en_gb:intensity=-0.4,pace=-0.2] We'll be sat here for about ten minutes. The trolley's in coach C. The tea is fine. The coffee is also tea.
+[tuesday:en_gb:intensity=1.1,pace=0.3] And to whoever's playing music out loud in coach D: I can hear it from here, and it's a good song, but no!
+[tuesday:en_gb:intensity=-0.6,pace=-0.3] Right. Signal's green. Thank you for your patience, and for the applause, which I'm choosing to believe was for me.

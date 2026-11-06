@@ -1,0 +1,4 @@
+[priya:en_us:intensity=0.3] Hey, it's me, I'm back, I'm home, I'm lying on the floor because the floor doesn't move and I'm very grateful to it.
+[priya:en_us:intensity=0.9,pace=0.3] Three flights, one missed connection, one airport that was basically a hallway with a vending machine, and I got the window every time!
+[priya:en_us:intensity=-0.7,pace=-0.4] I kept thinking about the last night there, the roof, the lights going out one by one across the valley. I didn't take a picture. I just watched.
+[priya:en_us:intensity=0.2] Call me back. Not tonight. Tomorrow. I'm going to sleep on this floor.

@@ -1,0 +1,4 @@
+[kincade:en_us:intensity=-0.3,pace=-0.2] Okay, so here's what happened. Your belt was fine. The thing that squeals when the belt is fine is the pulley behind it, and that's what went.
+[kincade:en_us] I swapped it, tightened everything, and it's quiet now. You'd never know.
+[kincade:en_us:intensity=1.0,pace=0.2] But listen to me, that front left tire? That's not a tire anymore, that's a suggestion. You don't drive to the coast on that.
+[kincade:en_us:intensity=-0.5,pace=-0.3] I'm not trying to sell you tires. I'm trying to not read about you. Go slow, come back Tuesday.

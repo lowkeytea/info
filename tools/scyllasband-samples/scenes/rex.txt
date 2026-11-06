@@ -1,0 +1,4 @@
+[rex:en_us:intensity=-0.6,pace=-0.5] My grandfather had one rule on the boat: nobody talks before the first fish. So we'd sit there, two hours sometimes, not a word.
+[rex:en_us:intensity=-0.3,pace=-0.3] Then I caught one, and he looked at it, and he looked at me, and he said, well, that's a small fish.
+[rex:en_us:intensity=0.5] That's it. That was the whole conversation. I was eleven. I thought about it for twenty years.
+[rex:en_us:intensity=-0.8,pace=-0.4] I took my daughter out last summer. She caught one first. Big one. I told her it was a small fish. She hasn't forgiven me yet.

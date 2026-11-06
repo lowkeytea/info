@@ -1,0 +1,4 @@
+[orpheus:en_gb:intensity=-0.5,pace=-0.3] We close in ten minutes, but you can stay, as long as you don't mind me counting the till out loud.
+[orpheus:en_gb] The book you're holding came in on Monday. A woman brought a whole box of them, said her father read nothing else.
+[orpheus:en_gb:intensity=0.5,pace=0.2] I opened one, just to check the pages, and there was a train ticket from nineteen seventy-one in the middle, like a bookmark somebody forgot.
+[orpheus:en_gb:intensity=-0.8,pace=-0.4] I left it in. Seemed rude to take a man's place in his own book.

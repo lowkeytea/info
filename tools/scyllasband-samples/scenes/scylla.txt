@@ -1,0 +1,4 @@
+[scylla:en_us:intensity=0.5,pace=0.2] Good morning, everyone, and welcome to the café, where the coffee is strong and the opinions are stronger.
+[scylla:en_us] Two announcements. The lemon cake is back, and yes, I know what happened last time, and no, the recipe has not changed, you have.
+[scylla:en_us:intensity=1.5,pace=0.3] Second. Somebody has been taking the good chair. The one by the window. My chair. I will find you!
+[scylla:en_us:intensity=-0.5,pace=-0.3] Anyway. Enjoy your morning. Tip your server. She is a saint and I am not.

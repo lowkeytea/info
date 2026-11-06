@@ -1,0 +1,4 @@
+[stone:en_us:intensity=-0.7,pace=-0.4] Eleven o'clock, east wing. Doors locked, lights off, the heating ticking the way it does when the building thinks nobody's listening.
+[stone:en_us:intensity=-0.3,pace=-0.2] There's a cat that gets in through the loading dock. I'm not supposed to feed it. I've been not feeding it for three years.
+[stone:en_us:intensity=0.7] Tonight the cat brought a friend, and the friend is not a cat, and I'm going to have to write that down somewhere.
+[stone:en_us:intensity=-0.8,pace=-0.5] Eleven fifteen. West wing. Nothing to report. Two cats. One of them is a raccoon.

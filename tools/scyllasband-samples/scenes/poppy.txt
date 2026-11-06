@@ -1,0 +1,4 @@
+[poppy:en_us:intensity=0.4,pace=0.2] Good morning! Mostly sunny, high of sixty-eight, a light breeze off the water, perfect, honestly, get outside.
+[poppy:en_us:intensity=-0.3] Later this afternoon there's a system moving in from the west, and it looks like... okay, it looks bigger than it did an hour ago.
+[poppy:en_us:intensity=1.3,pace=0.4] Okay, that's a lot of red on the map. Bring the chairs in! Bring the dog in! If you've got a trampoline, I'm sorry, it's gone!
+[poppy:en_us:intensity=-0.5,pace=-0.2] And tomorrow, clear skies again, like nothing happened. That's the whole forecast. Be careful out there.

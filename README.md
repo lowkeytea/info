@@ -8,9 +8,8 @@ site/                      ← publish this folder
   privacy/index.html       privacy policy: website, email, Scylla's Band, app index
   support/index.html       support page (use as the App Store / Play "Support URL")
   scyllasband/demo/        in-browser Scylla's Band demo (the only page with JavaScript)
-  scyllasband/samples/     pre-generated Scylla's Band samples: the voice gallery's 170 clips (every voice, six languages, six deliveries,
-                           narration, dialogue) and singing/ (the Ghost in the Machine demo track, the Kitchen Patter example); the
-                           gallery page in the scyllasband repository plays them from here, so samples update without a runtime commit
+  scyllasband/samples/     the voice sample page: fourteen voices (a hello, a scene, a sung chorus each), the songs built from
+                           scores, long-form speech; audio/ holds the clips. tools/scyllasband-samples/ regenerates it
   404.html                 served for missing paths (see wrangler.jsonc)
   _headers                 security headers + font caching (Cloudflare _headers format)
   robots.txt, sitemap.xml
@@ -19,13 +18,15 @@ site/                      ← publish this folder
   assets/site.css
   assets/fonts/            Bricolage Grotesque (SIL OFL 1.1, see OFL.txt), self-hosted
 demo-src/                  sources for the demo's engine build, model pin and a local preview server (not published)
+tools/scyllasband-samples/ generator for the sample page: the script (clips, songs, long-form texts), the scene lines per voice,
+                           and generate_samples.py, which renders through the scyllasband runtime and writes the page (not published)
 wrangler.jsonc             Cloudflare Worker config: serves site/ as static assets
 templates/
   app-privacy-policy.html  per-app privacy policy to copy when an app ships (not published)
 previous-draft/            the first draft and its QA notes, kept for reference
 ```
 
-The look follows the [Scylla's Band voice gallery](https://lowkeytea.github.io/scyllasband/): the same navy, red-to-teal stripe, cream offset shadows and outlined cards, with a dark mode that follows the visitor's system setting. Only the demo page uses JavaScript.
+The look follows the original Scylla's Band voice gallery: the same navy, red-to-teal stripe, cream offset shadows and outlined cards, with a dark mode that follows the visitor's system setting. Only the demo page uses JavaScript.
 
 ## Preview
 
@@ -43,7 +44,7 @@ The repo `lowkeytea/info` is connected to a Cloudflare Worker named `info` throu
 - **`workers.dev` address and preview URLs:** both are off (`"workers_dev": false`, `"preview_urls": false` in `wrangler.jsonc`). These are re-applied on every deploy, so change them there rather than in the dashboard.
 - **Manual deploy:** `npx wrangler@4 deploy` from this folder, after `npx wrangler@4 login`.
 
-Static asset requests are free and don't count against the Workers request limit. The largest file is ONNX Runtime's 14.2 MB WebAssembly binary for the demo (the per-file limit is 25 MiB), and the whole site is about 33 MB in about 200 files, half of it the samples. The model itself comes from Hugging Face, not Cloudflare.
+Static asset requests are free and don't count against the Workers request limit. The largest file is ONNX Runtime's 14.2 MB WebAssembly binary for the demo (the per-file limit is 25 MiB), and the whole site is about 54 MB in about 80 files: 32 MB the demo's engine and 22 MB the sample audio. The model itself comes from Hugging Face, not Cloudflare.
 
 ## Apple organization migration
 

@@ -1,0 +1,4 @@
+[gwen:en_us:intensity=-0.2] So, the boxes are gone, the walls are bare, and the place echoes now, which I didn't expect.
+[gwen:en_us:intensity=0.5,pace=0.2] I found your old drawing behind the radiator, the one with the horse that looks like a dog! I kept it. Obviously I kept it.
+[gwen:en_us:intensity=-0.9,pace=-0.4] I keep thinking about the winter the heating broke and we slept in the kitchen with the oven open. I don't know why that's the one I'll miss.
+[gwen:en_us:intensity=0.3] Anyway. The new address is on the back of this. Come see it before I fill it with boxes again.

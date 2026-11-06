@@ -1,0 +1,4 @@
+[max:en_us:intensity=-0.4,pace=-0.3] Sit down. Breathe. Nobody talk for ten seconds.
+[max:en_us:intensity=0.3] We're down by two. That's nothing. That's one good minute. We've had plenty of good minutes this year, we just haven't had one tonight yet.
+[max:en_us:intensity=1.4,pace=0.3] So here's what changes. We stop waiting for them to make a mistake and we start making them hurry! Every pass, every time, make them hurry!
+[max:en_us:intensity=-0.6,pace=-0.2] And if we lose anyway, we lose fast and loud and together. Okay. Go.

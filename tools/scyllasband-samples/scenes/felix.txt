@@ -1,0 +1,4 @@
+[felix:en_us:intensity=-0.6,pace=-0.3] That's the last song of the night, and if you're still up, you're one of about nine people, so hello, all nine of you.
+[felix:en_us] The forecast says rain by morning, the kind that doesn't commit, so take the umbrella and don't open it.
+[felix:en_us:intensity=0.6,pace=0.2] Oh, and the bakery on Fourth is giving away yesterday's bread at six, which is not a rumor, I was there, I have the bread.
+[felix:en_us:intensity=-0.8,pace=-0.4] Turn the lamp off. Leave the window open a little. I'll be here tomorrow, same time, same nine people.
