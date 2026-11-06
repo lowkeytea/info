@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Scylla's Band launch video · Lowkey Tea LLC</title>
+  <meta name="description" content="Two and a half minutes of Scylla's Band: four voices joking in six languages, then a song for all fourteen. Every voice and every sung note in it is the model.">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#fff7e8" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0c1f33" media="(prefers-color-scheme: dark)">
+  <link rel="canonical" href="https://lowkeytea.dev/scyllasband/video/">
+  <meta property="og:type" content="video.other">
+  <meta property="og:site_name" content="Lowkey Tea LLC">
+  <meta property="og:title" content="Scylla's Band: the launch video">
+  <meta property="og:description" content="Four voices joking in six languages, then a song for all fourteen. Every voice and every sung note is the model.">
+  <meta property="og:url" content="https://lowkeytea.dev/scyllasband/video/">
+  <meta property="og:image" content="https://lowkeytea.dev/scyllasband/video/media/og-video.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="A frame from the video: fourteen voice orbs in a row, the chorus written out in coloured letters, fact tiles stacked below">
+  <meta property="og:video" content="https://lowkeytea.dev/scyllasband/video/media/launch-16x9.mp4">
+  <meta property="og:video:type" content="video/mp4">
+  <meta property="og:video:width" content="1920">
+  <meta property="og:video:height" content="1080">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="../../assets/fonts/bricolage-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../../assets/site.css">
+  <link rel="stylesheet" href="video.css">
+  <script src="video.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="shell header-row">
+      <a class="brand" href="../../" aria-label="Lowkey Tea, home">
+        <svg class="brand-mark" viewBox="0 0 48 48" aria-hidden="true"><use href="#mark"/></svg>
+        <span class="brand-name">Lowkey Tea</span>
+      </a>
+      <nav aria-label="Main">
+        <a href="../../#work">Work</a>
+        <a href="../../#about">About</a>
+        <a href="../../support/">Support</a>
+        <a href="../../#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="doc shell" tabindex="-1">
+    <div class="doc-head">
+      <div class="stripe" aria-hidden="true"></div>
+      <p class="eyebrow">Scylla&rsquo;s Band</p>
+      <h1>The launch video</h1>
+      <p class="lede">Four voices joke their way through launch day in six languages, then the band sings, all fourteen of them by the
+        last chorus. Every voice and every sung note in it is Scylla&rsquo;s Band; the facts drop in underneath as they go.</p>
+    </div>
+
+    <figure class="launch-figure">
+      <!-- Portrait screens get the vertical cut. Safari plays the HLS copy (it needs byte ranges for an MP4, which this host
+           doesn't serve); other browsers play the MP4. video.js picks the same way, sets the poster and adds the switch. -->
+      <video class="launch" controls playsinline preload="none" aria-label="Scylla's Band launch video, 2 minutes 38 seconds">
+        <source media="(orientation: portrait)" src="media/9x16/index.m3u8" type="application/vnd.apple.mpegurl">
+        <source media="(orientation: portrait)" src="media/launch-9x16.mp4" type="video/mp4">
+        <source src="media/16x9/index.m3u8" type="application/vnd.apple.mpegurl">
+        <source src="media/launch-16x9.mp4" type="video/mp4">
+        <p>Your browser can&rsquo;t play the video here. Download it: <a href="media/launch-16x9.mp4">widescreen</a> or
+          <a href="media/launch-9x16.mp4">vertical</a> (MP4, 24 MB each).</p>
+      </video>
+      <figcaption>
+        <span>2:38 &middot; sound on. The words on screen are the captions.</span>
+        <span class="cut-switch" hidden>Watch the <button type="button" data-cut="wide">widescreen</button> or the
+          <button type="button" data-cut="tall">vertical</button> cut.</span>
+      </figcaption>
+    </figure>
+
+    <div class="video-notes">
+      <section aria-labelledby="watching-title">
+        <h2 id="watching-title">What you&rsquo;re watching</h2>
+        <ul>
+          <li><strong>The voices.</strong> Scylla, Ariadne, Orpheus and Thistle talk, Tuesday raps, and all fourteen sing the last
+            chorus. Each voice is an orb that swells with its own loudness and splashes on its consonants.</li>
+          <li><strong>The timing.</strong> Every word lands on screen when the model&rsquo;s own phone durations say it&rsquo;s
+            spoken. Sung lines scroll past at the pitch of each note in the score.</li>
+          <li><strong>The receipts.</strong> &ldquo;Made in 26&nbsp;ms&rdquo; under a line is how long that line took to render, warm,
+            on a MacBook Pro with an M5 Max (Core ML bundle, GPU).</li>
+          <li><strong>The facts.</strong> Each figure comes from the <a href="https://github.com/lowkeytea/scyllasband">README</a>, the
+            <a href="https://huggingface.co/spybyscript/scyllasband">model card</a> or the open-tts-leaderboard evaluation of
+            release v4-20261106.</li>
+        </ul>
+      </section>
+      <section aria-labelledby="made-title">
+        <h2 id="made-title">How it was made</h2>
+        <p>The video is a program. A script and melody scores go in; the scyllasband runtime renders every line and every note;
+          Whisper checks that each line says what it should; and the model&rsquo;s timings, pitch and loudness drive the
+          picture, drawn in code as one field of characters with Remotion and a WebGL shader. Change a line and the video
+          follows.</p>
+        <p>The instrumental (drums, bass, keys and synth) was generated in ACE Studio around the band&rsquo;s finished vocals.
+          ACE Studio didn&rsquo;t touch the voices.</p>
+        <div class="actions">
+          <a class="button" href="../demo/">Try it in your browser <span aria-hidden="true">&rarr;</span></a>
+          <p class="link-row"><a href="../samples/">Voice samples</a><a href="https://github.com/lowkeytea/scyllasband">GitHub</a><a href="https://huggingface.co/spybyscript/scyllasband">Hugging Face</a></p>
+        </div>
+      </section>
+    </div>
+
+    <details class="transcript">
+      <summary>Transcript</summary>
+      <div class="transcript-body">
+          <p><span class="who">Scylla</span> <span>Okay, team, it&#x27;s launch day! I&#x27;m thinking lasers, a choir, maybe a cookie budget.</span></p>
+          <p><span class="who">Ariadne</span> <span>Wait, there&#x27;s a cookie budget?</span></p>
+          <p><span class="who">Orpheus</span> <span>Scylla. The video&#x27;s already started. They can hear us.</span></p>
+          <p><span class="who">Scylla</span> <span>Oh! Hi! Hello, everyone! Act natural, act natural.</span></p>
+          <p><span class="who">Thistle</span> <span>We are natural. That&#x27;s sort of the whole point.</span></p>
+          <p><span class="who">Orpheus</span> <span>Shouldn&#x27;t we tell them how fast we are?</span></p>
+          <p><span class="who">Thistle</span> <span>No need. This whole sentence was ready before I&#x27;d even finished saying the first word of it.</span></p>
+          <p><span class="who">Scylla</span> <span>And we&#x27;re tiny! We fit on a phone!</span></p>
+          <p><span class="who">Ariadne</span> <span>Great. So, about that cookie budget.</span></p>
+          <p><span class="who">Orpheus</span> <span>Ask in French, and we&#x27;ll talk.</span></p>
+          <p><span class="who">Ariadne</span> <span lang="fr">Je peux avoir un cookie, s&#x27;il te plaît ?</span> <span class="how">(French: &ldquo;Can I have a cookie, please?&rdquo;)</span></p>
+          <p><span class="who">Scylla</span> <span>Now Spanish!</span></p>
+          <p><span class="who">Ariadne</span> <span lang="es">¿Me das una galleta, por favor?</span> <span class="how">(Spanish: &ldquo;Will you give me a cookie, please?&rdquo;)</span></p>
+          <p><span class="who">Thistle</span> <span>German.</span></p>
+          <p><span class="who">Ariadne</span> <span lang="de">Darf ich bitte einen Keks haben?</span> <span class="how">(German: &ldquo;May I please have a cookie?&rdquo;)</span></p>
+          <p><span class="who">Orpheus</span> <span>Italian.</span></p>
+          <p><span class="who">Ariadne</span> <span lang="it">Posso avere un biscotto, per favore?</span> <span class="how">(Italian: &ldquo;Can I have a cookie, please?&rdquo;)</span></p>
+          <p><span class="who">Scylla</span> <span>Vietnamese!</span></p>
+          <p><span class="who">Ariadne</span> <span lang="vi">Cho mình xin một cái bánh quy được không?</span> <span class="how">(Vietnamese: &ldquo;Can I have a cookie?&rdquo;)</span></p>
+          <p><span class="who">Ariadne</span> <span>That&#x27;s six languages! Six! Where is my cookie?</span></p>
+          <p><span class="who">Thistle</span> <span>Fine. One cookie, if you can sing for it.</span></p>
+          <h3>&ldquo;Fourteen Voices Strong&rdquo;</h3>
+          <p><span class="who">Tuesday</span> <span class="how">sings</span> It&#x27;s the day it&#x27;s finally the day let me sing it&#x27;s time to sing I&#x27;m the ghost in the machine and I&#x27;m running on everything fourteen voices six languages every one of them a friend and it all fits in your pocket no cloud from start to end</p>
+          <p><span class="who">Scylla</span> <span>For real? We can sing now? Oh my god, I&#x27;m probably going to be so out of tune.</span></p>
+          <p><span class="who">Scylla</span> <span class="how">sings</span> Count me in I&#x27;m the leader of the band every note is written right here in my hand</p>
+          <p><span class="who">Orpheus</span> <span class="how">sings</span> I was fine with talking talking was my thing but give me a melody and fine I&#x27;ll sing</p>
+          <p><span class="who">Scylla and Orpheus</span> <span class="how">sings</span> we are Scylla&#x27;s band fourteen voices strong small enough to carry loud enough to sing along from a whisper to a chorus every word in tune it&#x27;s the first of many songs and we&#x27;ll see you soon</p>
+          <p><span class="who">All fourteen voices</span> <span class="how">sings</span> we are Scylla&#x27;s band fourteen voices strong small enough to carry loud enough to sing along from a whisper to a chorus every word in tune it&#x27;s the first of many songs and we&#x27;ll see you soon</p>
+          <p><span class="who">Scylla</span> <span>Was that all of us? All fourteen of us?</span></p>
+          <p><span class="who">Orpheus</span> <span>One small model. On your phone, your laptop, or in your browser. The code&#x27;s all in the repo.</span></p>
+          <p><span class="who">Ariadne</span> <span>So, is that a no on the cookie?</span></p>
+          <p><span class="who">The band</span> <span>Ariadne!</span></p>
+      </div>
+    </details>
+  </main>
+
+  <footer class="site-footer">
+    <div class="shell footer-row">
+      <p>&copy; 2026 Lowkey Tea LLC &middot; Washington, United States</p>
+      <nav aria-label="Footer">
+        <a href="../../privacy/">Privacy</a>
+        <a href="../../support/">Support</a>
+        <a href="https://github.com/lowkeytea">GitHub</a>
+      </nav>
+    </div>
+  </footer>
+
+  <svg class="sprite" aria-hidden="true">
+    <symbol id="mark" viewBox="0 0 48 48">
+      <rect x="12" y="7" width="5" height="11" rx="2.5" fill="#c83b2d"/>
+      <rect x="19.5" y="3.5" width="5" height="14.5" rx="2.5" fill="#f29a59"/>
+      <rect x="27" y="9.5" width="5" height="8.5" rx="2.5" fill="#0c7d86"/>
+      <path d="M34 25.5h2.5a5.5 5.5 0 0 1 0 11H33" fill="none" stroke="currentColor" stroke-width="3.6" stroke-linecap="round"/>
+      <path d="M8 21h28v13a9 9 0 0 1-9 9H17a9 9 0 0 1-9-9z" fill="currentColor"/>
+      <rect x="8" y="27" width="28" height="4" fill="#ffc375"/>
+    </symbol>
+  </svg>
+</body>
+</html>

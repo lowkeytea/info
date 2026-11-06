@@ -1,0 +1,43 @@
+/* Scylla's Band launch video page. Builds on ../../assets/site.css tokens. */
+
+.doc-head .eyebrow { margin-bottom: 14px; }
+
+.launch-figure { margin: 40px 0 0; }
+.launch {
+  display: block; width: 100%; aspect-ratio: 16 / 9; margin-inline: auto;
+  border: 1.5px solid var(--line); border-radius: 14px; background: #05060a; box-shadow: 5px 5px 0 var(--apricot);
+}
+@media (prefers-color-scheme: dark) { .launch { box-shadow: 5px 5px 0 var(--red); } }
+/* The vertical cut: as tall as the screen allows, centred. (Without JavaScript, portrait screens get it from <source media>.) */
+.launch[data-cut="tall"] { width: auto; max-width: 100%; height: min(84vh, 1120px); aspect-ratio: 9 / 16; }
+@media (orientation: portrait) {
+  .launch:not([data-cut]) { width: auto; max-width: 100%; height: min(84vh, 1120px); aspect-ratio: 9 / 16; }
+}
+.launch-figure figcaption {
+  display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 24px; margin-top: 16px;
+  color: var(--muted); font-size: .95rem;
+}
+.cut-switch button {
+  padding: 2px 10px; border: 1.5px solid var(--line-soft); border-radius: 999px; background: var(--card);
+  color: var(--ink); font: inherit; font-weight: 700; cursor: pointer;
+}
+.cut-switch button:hover { border-color: var(--line); color: var(--link); }
+.cut-switch button[aria-pressed="true"] { border-color: var(--line); background: var(--ink); color: var(--paper); }
+
+.video-notes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px 56px; margin-top: 56px; }
+.video-notes h2 { margin: 0 0 14px; font-size: 1.6rem; font-weight: 800; letter-spacing: -.03em; }
+.video-notes ul { margin: 0; padding-left: 1.1rem; display: grid; gap: 10px; }
+.video-notes p { margin: 0 0 14px; }
+.video-notes .actions { margin-top: 24px; }
+@media (max-width: 760px) { .video-notes { grid-template-columns: 1fr; } }
+
+.transcript {
+  margin-top: 56px; padding: 18px 24px; border: 1.5px solid var(--line); border-radius: var(--radius);
+  background: var(--card); box-shadow: var(--shadow);
+}
+.transcript summary { font-weight: 800; font-size: 1.1rem; cursor: pointer; }
+.transcript-body { margin-top: 14px; }
+.transcript-body p { margin: 0 0 8px; }
+.transcript-body h3 { margin: 22px 0 8px; font-size: 1.1rem; }
+.transcript .who { font-weight: 800; }
+.transcript .how { color: var(--muted); }

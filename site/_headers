@@ -13,6 +13,10 @@
   Cache-Control: public, max-age=604800
   Access-Control-Allow-Origin: *
 
+# The launch video's files never change in place (a new cut gets new names), so they're cached for a week.
+/scyllasband/video/media/*
+  Cache-Control: public, max-age=604800
+
 # The demo page sets its own CSP in a <meta> tag; its worker compiles WebAssembly and fetches the model from
 # Hugging Face, which the site-wide policy blocks. COOP + COEP make the page cross-origin isolated, which
 # ONNX Runtime Web needs for multithreading.
