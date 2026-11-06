@@ -3,8 +3,8 @@
 // adds a switch that keeps the playback position. Safari gets the HLS copy, other browsers the MP4.
 const video = document.querySelector("video.launch");
 const CUTS = {
-  wide: { poster: "media/poster-16x9.jpg", hls: "media/16x9/index.m3u8", mp4: "media/launch-16x9.mp4" },
-  tall: { poster: "media/poster-9x16.jpg", hls: "media/9x16/index.m3u8", mp4: "media/launch-9x16.mp4" },
+  wide: { poster: "media/poster-16x9.jpg", hls: "media/r2/16x9/index.m3u8", mp4: "media/r2/launch-16x9.mp4" },
+  tall: { poster: "media/poster-9x16.jpg", hls: "media/r2/9x16/index.m3u8", mp4: "media/r2/launch-9x16.mp4" },
 };
 const portrait = window.matchMedia("(orientation: portrait)");
 const hls = video.canPlayType("application/vnd.apple.mpegurl") !== "";

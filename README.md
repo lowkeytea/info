@@ -82,10 +82,11 @@ model's own output (script, melody scores, the runtime, a Remotion renderer); th
 - **Why HLS as well as MP4:** this host answers a byte-range request with the whole file (`200`, not `206`), and Safari
   won't play an MP4 without ranges. Safari (and any browser that plays HLS natively) gets `16x9/index.m3u8` or
   `9x16/index.m3u8`, 6-second fMP4 segments of the same encode; other browsers play the MP4, which needs no ranges.
-- **Files:** `media/launch-16x9.mp4`, `media/launch-9x16.mp4` (1080p, 30 fps, H.264 at 1.1 Mb/s two-pass with a keyframe
-  every 6 s, AAC 128 kb/s, faststart), `media/16x9/` and `media/9x16/` (the HLS copies), `poster-*.jpg`, `thumb-16x9.jpg`
-  (the home page's link) and `og-video.jpg` (1200x630 social preview). Cached for a week (`_headers`), so a new cut gets
-  new file names.
+- **Files:** the current cut is in `media/r2/` (each new cut gets a new folder, because the media is cached for a week and an
+  old segment must never meet a new one): `launch-16x9.mp4`, `launch-9x16.mp4` (1080p, 30 fps, H.264 at 1.1 Mb/s two-pass with a keyframe
+  every 6 s, AAC 128 kb/s, faststart), `16x9/` and `9x16/` (the HLS copies); in `media/` itself `poster-*.jpg`, `thumb-16x9.jpg`
+  (the home page's link) and `og-video.jpg` (1200x630 social preview). The video project's `make_video.py youtube` writes a new cut's
+  files under `out/youtube/web/`.
 - **A new cut** from 60 fps masters `wide.mp4` and `tall.mp4`, for each of `16x9`/`wide` and `9x16`/`tall`:
 
   ```sh
