@@ -367,7 +367,7 @@ def render_page(ctx: dict) -> str:
       </ul>
       <div class="actions">
         <a class="button" href="../demo/">Try it in your browser <span aria-hidden="true">&rarr;</span></a>
-        <p class="link-row"><a href="{REPO_URL}">GitHub</a><a href="{MODEL_URL}">Hugging Face</a></p>
+        <p class="link-row"><a href="../video/">Launch video</a><a href="{REPO_URL}">GitHub</a><a href="{MODEL_URL}">Hugging Face</a></p>
       </div>
     </div>
     <nav class="section-nav" aria-label="Sections">

@@ -8,6 +8,8 @@ site/                      ← publish this folder
   privacy/index.html       privacy policy: website, email, Scylla's Band, app index
   support/index.html       support page (use as the App Store / Play "Support URL")
   scyllasband/demo/        in-browser Scylla's Band demo (the only page with JavaScript)
+  scyllasband/video/       the launch video page: the 16:9 and 9:16 cuts (MP4 and HLS), posters, and video.js, which picks the
+                           cut for the screen
   scyllasband/samples/     the voice sample page: fourteen voices (a hello, a scene, a sung chorus each), the songs built from
                            scores, long-form speech; audio/ holds the clips. tools/scyllasband-samples/ regenerates it
   404.html                 served for missing paths (see wrangler.jsonc)
@@ -26,7 +28,8 @@ templates/
 previous-draft/            the first draft and its QA notes, kept for reference
 ```
 
-The look follows the original Scylla's Band voice gallery: the same navy, red-to-teal stripe, cream offset shadows and outlined cards, with a dark mode that follows the visitor's system setting. Only the demo page uses JavaScript.
+The look follows the original Scylla's Band voice gallery: the same navy, red-to-teal stripe, cream offset shadows and outlined cards, with a dark mode that follows the visitor's system setting. Only the demo page and the launch video page (a 40-line
+script that picks the cut) use JavaScript.
 
 ## Preview
 
@@ -44,7 +47,7 @@ The repo `lowkeytea/info` is connected to a Cloudflare Worker named `info` throu
 - **`workers.dev` address and preview URLs:** both are off (`"workers_dev": false`, `"preview_urls": false` in `wrangler.jsonc`). These are re-applied on every deploy, so change them there rather than in the dashboard.
 - **Manual deploy:** `npx wrangler@4 deploy` from this folder, after `npx wrangler@4 login`.
 
-Static asset requests are free and don't count against the Workers request limit. The largest file is ONNX Runtime's 14.2 MB WebAssembly binary for the demo (the per-file limit is 25 MiB), and the whole site is about 54 MB in about 80 files: 32 MB the demo's engine and 22 MB the sample audio. The model itself comes from Hugging Face, not Cloudflare.
+Static asset requests are free and don't count against the Workers request limit. The largest files are the launch video's two MP4s at 23.4 MiB each (the per-file limit is 25 MiB), and the whole site is about 150 MB in about 150 files: 94 MB the launch video, 32 MB the demo's engine and 22 MB the sample audio. The model itself comes from Hugging Face, not Cloudflare.
 
 ## Apple organization migration
 
@@ -64,9 +67,36 @@ Things Apple checks for, and where the site covers them:
 
 ## Editing notes
 
-- The header, footer and logo symbol are repeated in each page (there's no build step to share them). Change all four pages when you change one.
+- The header, footer and logo symbol are repeated in each page (there's no build step to share them). Change every page when you change one.
 - `_headers` sets a strict Content-Security-Policy (`'self'` only, no inline styles or scripts). If you add a third-party embed, analytics, or inline `style=""`, update the CSP or it will be blocked.
 - Speed figures and platform details on the home page come from the Scylla's Band README and model card (release v2-20261006). Update them with new releases.
+
+## Scylla's Band launch video
+
+`site/scyllasband/video/` shows the launch video (2:38). The video itself is made by a separate program from the
+model's own output (script, melody scores, the runtime, a Remotion renderer); this folder only holds the encoded cuts.
+
+- **Which cut:** portrait screens get the vertical cut (9:16), everything else the widescreen one (16:9). The `<source
+  media>` attributes choose without JavaScript; `video.js` does the same, sets the matching poster, follows a rotation
+  until playback starts, and adds a switch between the cuts that keeps the playback position.
+- **Why HLS as well as MP4:** this host answers a byte-range request with the whole file (`200`, not `206`), and Safari
+  won't play an MP4 without ranges. Safari (and any browser that plays HLS natively) gets `16x9/index.m3u8` or
+  `9x16/index.m3u8`, 6-second fMP4 segments of the same encode; other browsers play the MP4, which needs no ranges.
+- **Files:** `media/launch-16x9.mp4`, `media/launch-9x16.mp4` (1080p, 30 fps, H.264 at 1.1 Mb/s two-pass with a keyframe
+  every 6 s, AAC 128 kb/s, faststart), `media/16x9/` and `media/9x16/` (the HLS copies), `poster-*.jpg`, `thumb-16x9.jpg`
+  (the home page's link) and `og-video.jpg` (1200x630 social preview). Cached for a week (`_headers`), so a new cut gets
+  new file names.
+- **A new cut** from 60 fps masters `wide.mp4` and `tall.mp4`, for each of `16x9`/`wide` and `9x16`/`tall`:
+
+  ```sh
+  X="-vf fps=30 -c:v libx264 -preset slower -tune animation -b:v 1100k -x264-params keyint=180:min-keyint=180:scenecut=0"
+  ffmpeg -i wide.mp4 $X -pass 1 -an -f mp4 /dev/null
+  ffmpeg -i wide.mp4 $X -pass 2 -profile:v high -level 4.1 -pix_fmt yuv420p -c:a aac -b:a 128k -movflags +faststart launch-16x9.mp4
+  ffmpeg -i launch-16x9.mp4 -c copy -f hls -hls_time 6 -hls_playlist_type vod -hls_segment_type fmp4 \
+      -hls_fmp4_init_filename init.mp4 -hls_segment_filename '16x9/seg_%02d.m4s' 16x9/index.m3u8
+  ```
+
+  Keep each MP4 under 25 MiB: 1.1 Mb/s fits 2:38; scale the bitrate with the length.
 
 ## Scylla's Band demo
 
