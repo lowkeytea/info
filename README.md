@@ -69,7 +69,7 @@ Things Apple checks for, and where the site covers them:
 
 - The header, footer and logo symbol are repeated in each page (there's no build step to share them). Change every page when you change one.
 - `_headers` sets a strict Content-Security-Policy (`'self'` only, no inline styles or scripts). If you add a third-party embed, analytics, or inline `style=""`, update the CSP or it will be blocked.
-- Speed figures and platform details on the home page come from the Scylla's Band README and model card (release v2-20261006). Update them with new releases.
+- Speed figures, bundle sizes and platform details on the home page come from the Scylla's Band README and model card (release v4-20261106). Update them with new releases.
 
 ## Scylla's Band launch video
 

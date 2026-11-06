@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Lowkey Tea LLC</title>
-  <meta name="description" content="Lowkey Tea LLC is an independent software company in Washington State. We make apps and games for iOS and Android, and Scylla's Band, an open-source text-to-speech model that runs on the device.">
+  <meta name="description" content="Lowkey Tea LLC is an independent software company in Washington State. We make apps and games for iOS and Android, and Scylla's Band, an open-source text-to-speech model that talks and sings on the device.">
   <meta name="color-scheme" content="light dark">
   <meta name="theme-color" content="#fff7e8" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#0c1f33" media="(prefers-color-scheme: dark)">
@@ -100,13 +100,15 @@
         <div class="feature-main">
           <p class="kicker">Open source &middot; Apache 2.0</p>
           <h3 id="sb-title">Scylla&rsquo;s Band</h3>
-          <p class="feature-lede">Text-to-speech that runs on the phone or computer it&rsquo;s installed on. No server, no account, no per-character bill.</p>
+          <p class="feature-lede">Text-to-speech that talks and sings on the phone or computer it&rsquo;s installed on. No server, no account, no per-character bill.</p>
           <p>Fourteen voices cover American and British English, Spanish, Italian, French, German and Vietnamese, with three delivery controls: intensity, pace and pitch. The emotion comes from the text. Audio streams as it&rsquo;s generated, so long text starts playing right away.</p>
+          <p>The same voices sing. Give it a melody score (each word with its note and its beats, in JSON) and it sings it, pop or ballad, from fast patter to a fourteen-voice choir.</p>
           <ul class="chips" aria-label="At a glance">
             <li><strong>14</strong> voices</li>
             <li><strong>7</strong> locales</li>
             <li><strong>24 kHz</strong> audio</li>
             <li><strong>3</strong> delivery controls</li>
+            <li><strong>2</strong> singing styles</li>
           </ul>
           <div class="feature-links">
             <a class="button" href="scyllasband/demo/">Try it in your browser <span aria-hidden="true">&rarr;</span></a>
@@ -131,7 +133,8 @@
               <li><span class="device">MacBook Pro M5 Max</span><span class="bundle">LiteRT, CPU</span><span class="num">34&times;</span></li>
               <li><span class="device">Galaxy Z Fold 8</span><span class="bundle">LiteRT, CPU</span><span class="num">27&times;</span></li>
             </ol>
-            <p class="speed-source">Approximate. From the <a href="https://huggingface.co/spybyscript/scyllasband">model card</a>.</p>
+            <p class="speed-note">Singing a 71-second song: 1&nbsp;s on the M5 Max (Core ML), 12.5&nbsp;s on the iPhone (Core AI).</p>
+            <p class="speed-source">Approximate. From the <a href="https://huggingface.co/spybyscript/scyllasband">model card</a>, release v4-20261106.</p>
           </figure>
 
           <div class="terminal" aria-label="Quick start">
@@ -140,29 +143,36 @@
 <span class="prompt">$</span> cd scyllasband
 <span class="prompt">$</span> python3 -m scyllasband download
 <span class="prompt">$</span> python3 -m scyllasband speak --voice scylla \
-    -o hello.wav "Hello from Scylla's Band."</code></pre>
+    -o hello.wav "Hello from Scylla's Band."
+<span class="prompt">$</span> python3 -m scyllasband sing --voice poppy \
+    --score scyllasband/models/melodies/phrase_pop_00.json \
+    -o sing.wav</code></pre>
           </div>
         </div>
 
         <dl class="platforms">
           <div>
-            <dt>LiteRT <span class="size">164 MB</span></dt>
+            <dt>LiteRT <span class="size">470 MB</span></dt>
             <dd>Linux, Windows, Android and Intel Macs</dd>
           </div>
           <div>
-            <dt>Core ML <span class="size">142 MB</span></dt>
-            <dd>Apple silicon Macs, iPhone and iPad on iOS 18 and later</dd>
+            <dt>Core ML <span class="size">406 MB</span></dt>
+            <dd>Apple silicon Macs, iPhone and iPad on iOS 18 and later, Vision Pro on visionOS 2</dd>
           </div>
           <div>
-            <dt>Core AI <span class="size">155 MB</span></dt>
-            <dd>iOS, iPadOS and visionOS 27 apps</dd>
+            <dt>Core AI <span class="size">418 MB</span></dt>
+            <dd>iOS, iPadOS and visionOS 27 apps; also macOS 27</dd>
           </div>
           <div>
-            <dt>ONNX Runtime <span class="size">262 MB</span></dt>
+            <dt>ONNX Runtime <span class="size">1.1 GB</span></dt>
             <dd>Anywhere ONNX Runtime runs</dd>
           </div>
+          <div>
+            <dt>WebGPU <span class="size">782 MB</span></dt>
+            <dd>Browsers, and NVIDIA GPUs through CUDA</dd>
+          </div>
         </dl>
-        <p class="feature-foot">There&rsquo;s a Python package and CLI, a C++ library with a C API, and sample apps for iOS and Android. It still trips on the odd word, and a few voices get rough on fast, wide pitch jumps. It speaks in its own fourteen voices only and can&rsquo;t clone anyone else&rsquo;s.</p>
+        <p class="feature-foot">There&rsquo;s a Python package and CLI, a C++ library with a C API, and sample apps for iOS and Android with a Speak tab and a Sing tab. Every bundle carries two decoders: Vocos for speech and BigVGAN for singing. It still trips on the odd word, and a few voices get rough on fast, wide pitch jumps. It speaks and sings in its own fourteen voices only and can&rsquo;t clone anyone else&rsquo;s.</p>
       </article>
     </section>
 

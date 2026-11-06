@@ -239,7 +239,7 @@ h1, h2, h3 { text-wrap: balance; }
 .chips strong { color: var(--link); font-variant-numeric: tabular-nums; }
 .feature-links { display: grid; justify-items: start; gap: 18px; margin-top: 28px; }
 .link-row { display: flex; flex-wrap: wrap; gap: 6px 20px; margin: 0; font-weight: 800; }
-.platforms .size { margin-left: 4px; color: var(--muted); font-size: .8rem; font-weight: 600; font-variant-numeric: tabular-nums; }
+.platforms .size { margin-left: 4px; color: var(--muted); font-size: .8rem; font-weight: 600; font-variant-numeric: tabular-nums; white-space: nowrap; }
 
 .feature-side { display: grid; gap: 24px; align-content: start; }
 .launch-thumb {
@@ -265,7 +265,7 @@ h1, h2, h3 { text-wrap: balance; }
 .speed figcaption { display: grid; gap: 2px; margin-bottom: 14px; }
 .speed-title { font-weight: 800; font-size: 1.05rem; }
 .speed-note, .speed-source { color: var(--muted); font-size: .86rem; }
-.speed-source { margin: 10px 0 0; }
+.speed-source, .speed > p.speed-note { margin: 10px 0 0; }
 .speed-list { margin: 0; padding: 0; list-style: none; }
 .speed-list li {
   display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "device num" "bundle num" "bar bar";
@@ -299,7 +299,7 @@ h1, h2, h3 { text-wrap: balance; }
 .terminal .prompt { color: var(--term-muted); user-select: none; }
 
 .platforms {
-  grid-column: 1 / -1; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; margin: 0;
+  grid-column: 1 / -1; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 14px; margin: 0;
 }
 .platforms div {
   padding: 16px 18px; border: 1.5px solid var(--line-soft); border-radius: 14px; background: var(--paper);
@@ -308,6 +308,7 @@ h1, h2, h3 { text-wrap: balance; }
 .platforms div:nth-child(2) { border-top-color: var(--teal); }
 .platforms div:nth-child(3) { border-top-color: var(--seafoam); }
 .platforms div:nth-child(4) { border-top-color: var(--apricot); }
+.platforms div:nth-child(5) { border-top-color: var(--coral); }
 .platforms dt { font-weight: 800; font-size: 1.05rem; }
 .platforms dd { margin: 4px 0 0; color: var(--muted); font-size: .92rem; line-height: 1.45; }
 .feature-foot {
@@ -410,6 +411,7 @@ h1, h2, h3 { text-wrap: balance; }
   .hero-art { width: min(78%, 380px); justify-self: start; order: -1; }
   .feature { grid-template-columns: 1fr; }
   .platforms { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .platforms div:last-child:nth-child(odd) { grid-column: 1 / -1; }
   .about-grid { grid-template-columns: 1fr; gap: 32px; }
   .doc-layout { grid-template-columns: 1fr; gap: 32px; }
   .toc { position: static; padding: 18px 20px; border: 1.5px solid var(--line-soft); border-radius: 14px; background: var(--card); }
