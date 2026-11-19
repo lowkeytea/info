@@ -4,7 +4,7 @@
 const $ = (id) => document.getElementById(id);
 const els = Object.fromEntries(['start', 'progress', 'progress-bar', 'progress-text', 'warning', 'studio', 'text', 'count',
   'voice', 'language', 'speed', 'speed-value', 'speak', 'stop', 'status', 'result', 'player', 'save', 'storage-text', 'delete',
-  'model-info'].map((id) => [id, $(id)]));
+  'model-info', 'trimmed', 'clips', 'clip-list', 'embedded-note', 'full-page'].map((id) => [id, $(id)]));
 
 const SAMPLE_RATE = 24000;
 // ?backend=cpu keeps the demo on WebAssembly even where WebGPU is available (for comparing the two).
@@ -27,10 +27,23 @@ const PRESETS = {
   faster: { intensity: 0, pace: 1, pitch: 0 },
 };
 const AXES = Object.keys(PRESETS.default);
+// One-click English texts that carry an emotion, each with a delivery preset that suits it.
+const EXAMPLES = {
+  angry: { preset: 'intense', text: 'I told you three times not to touch it! Why does nobody in this house ever listen to me?' },
+  excited: { preset: 'faster', text: "We did it! We actually won! I can't believe it, this is the best day of my whole life!" },
+  sad: { preset: 'calm', text: 'I kept his letters for years. I still read them sometimes, late at night, and I still miss him.' },
+  scared: { preset: 'default', text: "Did you hear that? Something's moving downstairs. Please, stay close to me and don't make a sound." },
+};
+const MAX_CHARS = 600;
+const ABBREVIATION = /(?:^|[\s(])(?:Mr|Mrs|Ms|Dr|Prof|St|Mt|Jr|Sr|Sra|Srta|Dra|Mme|Mlle|Hr|vs|No|[A-Za-zÀ-ÿ])\.$/;
+const MAX_CLIPS = 8;
+const LANGUAGE_NAMES = { en: 'English', es: 'Spanish', it: 'Italian', fr: 'French', de: 'German', vi: 'Vietnamese' };
 
 const mb = (bytes) => `${Math.round(bytes / 1e6)} MB`;
 let worker, pin, ready = false, firstRun = true;
 let audioContext, nextStart = 0, sources = [], chunks = [], startedAt = 0, firstAudioAt = 0;
+let request = null;
+const clips = [];
 
 function setStatus(text) { els.status.textContent = text; }
 function warn(text) { els.warning.textContent = text; els.warning.hidden = !text; }
@@ -116,7 +129,7 @@ const handlers = {
   },
   stopped() {
     setStatus('Stopped.');
-    if (chunks.length) showResult();
+    if (chunks.length) showResult(true);
     finishSpeaking();
   },
   error({ during, message }) {
@@ -146,16 +159,68 @@ function finishSpeaking() {
   els.stop.hidden = true;
 }
 
-function showResult() {
+function showResult(stopped = false) {
   const total = chunks.reduce((a, c) => a + c.length, 0);
   const all = new Float32Array(total);
   let offset = 0;
   for (const c of chunks) { all.set(c, offset); offset += c.length; }
-  const url = URL.createObjectURL(wav(all));
-  if (els.player.src) URL.revokeObjectURL(els.player.src);
-  els.player.src = url;
-  els.save.href = url;
+  const clip = { ...request, url: URL.createObjectURL(wav(all)), seconds: total / SAMPLE_RATE, stopped };
+  clips.unshift(clip);
+  // Drop the oldest clips; the player only ever holds one of the clips kept.
+  for (const old of clips.splice(MAX_CLIPS)) URL.revokeObjectURL(old.url);
+  select(clip);
   els.result.hidden = false;
+}
+
+// The current request's voice, language and delivery, for the clip's label and file name.
+function describeRequest(text) {
+  const voice = els.voice.value;
+  const preset = document.querySelector('input[name="preset"]:checked')?.value || 'default';
+  const values = Object.fromEntries(AXES.map((axis) => [axis, Number($(axis).value)]));
+  const speed = Number(els.speed.value);
+  const language = els.language.value === 'en' && BRITISH.has(voice) ? 'en-gb' : els.language.value;
+  const deliveryName = preset === 'custom'
+    ? AXES.map((axis) => `${axis}${values[axis] > 0 ? '+' : ''}${values[axis].toFixed(1)}`).join('_') : preset;
+  const name = ['scyllasband', voice, language, deliveryName, speed === 1 ? '' : `${speed.toFixed(2)}x`].filter(Boolean).join('-');
+  const voiceName = els.voice.selectedOptions[0].textContent;
+  const deliveryLabel = preset === 'custom'
+    ? AXES.map((axis) => `${axis} ${values[axis].toFixed(1)}`).join(', ')
+    : document.querySelector(`input[name="preset"][value="${preset}"] + span`).textContent;
+  const label = [voiceName, els.language.selectedOptions[0].textContent || LANGUAGE_NAMES[els.language.value], deliveryLabel,
+    speed === 1 ? '' : `${speed.toFixed(2)}×`].filter(Boolean).join(' · ');
+  return { text, file: `${name}.wav`, label };
+}
+
+function select(clip) {
+  els.player.src = clip.url;
+  els.save.href = clip.url;
+  els.save.download = clip.file;
+  els.save.textContent = `Download ${clip.file}`;
+  renderClips(clip);
+}
+
+function renderClips(current) {
+  els['clip-list'].replaceChildren(...clips.map((clip) => {
+    const item = document.createElement('li');
+    if (clip === current) item.setAttribute('aria-current', 'true');
+    const play = document.createElement('button');
+    play.type = 'button';
+    play.className = 'clip-play';
+    play.textContent = `${clip.label} · ${clip.seconds.toFixed(1)} s${clip.stopped ? ' (stopped)' : ''}`;
+    play.addEventListener('click', () => { select(clip); els.player.play().catch(() => {}); });
+    const text = document.createElement('span');
+    text.className = 'clip-text';
+    text.textContent = `“${clip.text}”`;
+    text.title = clip.text;
+    const save = document.createElement('a');
+    save.href = clip.url;
+    save.download = clip.file;
+    save.textContent = 'WAV';
+    save.setAttribute('aria-label', `Download ${clip.file}`);
+    item.append(play, text, save);
+    return item;
+  }));
+  els.clips.hidden = clips.length < 2;
 }
 
 function wav(samples) {
@@ -185,6 +250,29 @@ function updateEnglishLabel() {
 
 function updateCount() { els.count.textContent = els.text.value.length; }
 
+// Text over the limit is cut at the end of the last full sentence that fits (else at the last space), and the page says
+// so, rather than stopping mid-word.
+function trimText() {
+  const text = els.text.value;
+  if (text.length <= MAX_CHARS) return;
+  const head = text.slice(0, MAX_CHARS + 1);
+  let cut = -1;
+  for (const match of head.matchAll(/[.!?…。！？](?:["'”’»)\]]*)(?=\s|$)/g)) {
+    // A title or single letter before the full stop ("Dr.", "Sra.", "z. B.") isn't the end of a sentence.
+    if (match[0][0] === '.' && ABBREVIATION.test(head.slice(0, match.index + 1))) continue;
+    if (match.index + match[0].length <= MAX_CHARS) cut = match.index + match[0].length;
+  }
+  if (cut < MAX_CHARS / 3) cut = head.lastIndexOf(' ') > 0 ? head.lastIndexOf(' ') : MAX_CHARS;
+  els.text.value = text.slice(0, cut).trimEnd();
+  els.trimmed.textContent = `Trimmed from ${text.length} characters, at the end of the last full sentence that fits.`;
+}
+
+function onTextInput() {
+  if (els.text.value.length > MAX_CHARS) trimText();
+  else if (els.text.value.length < MAX_CHARS) els.trimmed.textContent = '';
+  updateCount();
+}
+
 // Controls
 els.start.addEventListener('click', async () => {
   warn('');
@@ -207,6 +295,7 @@ els.speak.addEventListener('click', async () => {
   els.speak.disabled = true;
   els.stop.hidden = false;
   setStatus(firstRun ? 'Loading the model into memory…' : 'Generating…');
+  request = describeRequest(text);
   startedAt = performance.now();
   worker.postMessage({ type: 'speak', text, voice: els.voice.value, language: els.language.value, delivery: delivery(),
     speed: Number(els.speed.value) });
@@ -232,7 +321,17 @@ if (wantedVoice && [...els.voice.options].some((option) => option.value === want
 els.language.addEventListener('change', () => {
   if (Object.values(SAMPLES).includes(els.text.value)) { els.text.value = SAMPLES[els.language.value]; updateCount(); }
 });
-els.text.addEventListener('input', updateCount);
+els.text.addEventListener('input', onTextInput);
+document.querySelectorAll('[data-example]').forEach((button) => button.addEventListener('click', () => {
+  const example = EXAMPLES[button.dataset.example];
+  els.language.value = 'en';
+  els.text.value = example.text;
+  els.trimmed.textContent = '';
+  updateCount();
+  const radio = document.querySelector(`input[name="preset"][value="${example.preset}"]`);
+  radio.checked = true;
+  radio.dispatchEvent(new Event('change'));
+}));
 els.speed.addEventListener('input', () => { els['speed-value'].textContent = `${Number(els.speed.value).toFixed(2)}×`; });
 
 document.querySelectorAll('input[name="preset"]').forEach((radio) => radio.addEventListener('change', () => {
@@ -249,7 +348,15 @@ for (const axis of AXES) {
 }
 
 // Start-up checks
-updateCount();
+// Inside another page (a Hugging Face Space shows it in a frame) the page isn't cross-origin isolated, so the CPU path
+// gets one thread; offer the same page in its own tab.
+let embedded = false;
+try { embedded = window.top !== window; } catch { embedded = true; }
+if (embedded && !self.crossOriginIsolated) {
+  els['full-page'].href = location.href;
+  els['embedded-note'].hidden = false;
+}
+onTextInput();
 updateEnglishLabel();
 syncAxisOutputs();
 if (typeof WebAssembly !== 'object' || !('caches' in self) || !('Worker' in self)) {
