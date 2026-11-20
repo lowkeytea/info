@@ -1,427 +1,427 @@
 {
  "repo": "spybyscript/scyllasband",
- "ref": "v3-20261104",
- "revision": "16f3dd0a5d304215979f652c2397bfabdd32da48",
+ "ref": "v4-20261106-web",
+ "revision": "7c7fcc18935ac37a95010c02ffe3f034f83e93ce",
  "model_version": "3",
  "contract_version": "1.0.0",
  "flavors": {
   "wasm": {
-   "folder": "onnx",
-   "bytes": 303706446,
+   "folder": "webgpu",
+   "bytes": 303470186,
    "files": [
     {
      "path": "assets/fixed_references.json",
-     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/16f3dd0a5d304215979f652c2397bfabdd32da48/onnx/assets/fixed_references.json",
+     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/7c7fcc18935ac37a95010c02ffe3f034f83e93ce/webgpu/assets/fixed_references.json",
      "size": 1555673,
      "sha256": "f227c55cab5f6b8cffa33c3dd743e69b26c7e446be5b9cd9a286095cabaa249e"
     },
     {
      "path": "assets/g2p/export_config.json",
-     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/16f3dd0a5d304215979f652c2397bfabdd32da48/onnx/assets/g2p/export_config.json",
+     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/7c7fcc18935ac37a95010c02ffe3f034f83e93ce/webgpu/assets/g2p/export_config.json",
      "size": 928,
      "sha256": "0ec5ea81f346521f3a5c9c4a90b939c6b5143b1a11cc5e74b9902969db56e568"
     },
     {
      "path": "assets/g2p/language_map.json",
-     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/16f3dd0a5d304215979f652c2397bfabdd32da48/onnx/assets/g2p/language_map.json",
+     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/7c7fcc18935ac37a95010c02ffe3f034f83e93ce/webgpu/assets/g2p/language_map.json",
      "size": 844,
      "sha256": "b3db2048b492799f8746b43001e0f7411eb5d359e17cabc6bfce4a7bccbfdd99"
     },
     {
      "path": "assets/g2p/normalization.json",
-     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/16f3dd0a5d304215979f652c2397bfabdd32da48/onnx/assets/g2p/normalization.json",
+     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/7c7fcc18935ac37a95010c02ffe3f034f83e93ce/webgpu/assets/g2p/normalization.json",
      "size": 1090,
      "sha256": "f9ca4fe4e4eca5e02b6f2874f5da6ede8b44b25c71c3c6ac00f96d7397024de6"
     },
     {
      "path": "assets/g2p/phoneme_dict.json",
-     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/16f3dd0a5d304215979f652c2397bfabdd32da48/onnx/assets/g2p/phoneme_dict.json",
+     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/7c7fcc18935ac37a95010c02ffe3f034f83e93ce/webgpu/assets/g2p/phoneme_dict.json",
      "size": 93,
      "sha256": "9cfb40b2fd31d7a32351c33f90230062554a4dc0a44e89f722de211d42ed1875"
     },
     {
      "path": "assets/g2p/pronunciation_overrides.json",
-     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/16f3dd0a5d304215979f652c2397bfabdd32da48/onnx/assets/g2p/pronunciation_overrides.json",
+     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/7c7fcc18935ac37a95010c02ffe3f034f83e93ce/webgpu/assets/g2p/pronunciation_overrides.json",
      "size": 80,
      "sha256": "a1f311379b76cb44719a2242a93a4046ff5f344cdac613374288234c2817eb59"
     },
     {
      "path": "assets/g2p/tokenizer.json",
-     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/16f3dd0a5d304215979f652c2397bfabdd32da48/onnx/assets/g2p/tokenizer.json",
+     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/7c7fcc18935ac37a95010c02ffe3f034f83e93ce/webgpu/assets/g2p/tokenizer.json",
      "size": 7769,
      "sha256": "4843d57a422b0a6045bbc6fc9a99afa329126a6742ff95ebcefcda660f3ee474"
     },
     {
      "path": "assets/languages.json",
-     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/16f3dd0a5d304215979f652c2397bfabdd32da48/onnx/assets/languages.json",
+     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/7c7fcc18935ac37a95010c02ffe3f034f83e93ce/webgpu/assets/languages.json",
      "size": 289,
      "sha256": "f2af2233d0a1c0dbb6e6236fd57592d12da84262fdd1a336ead1ee83a657e2ae"
     },
     {
      "path": "assets/phone_vocab.json",
-     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/16f3dd0a5d304215979f652c2397bfabdd32da48/onnx/assets/phone_vocab.json",
+     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/7c7fcc18935ac37a95010c02ffe3f034f83e93ce/webgpu/assets/phone_vocab.json",
      "size": 1793,
      "sha256": "83e6457a69948edbd9a94b404c22fd408c263eb0d0b5acaafa4926e994587721"
     },
     {
      "path": "assets/voices.json",
-     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/16f3dd0a5d304215979f652c2397bfabdd32da48/onnx/assets/voices.json",
+     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/7c7fcc18935ac37a95010c02ffe3f034f83e93ce/webgpu/assets/voices.json",
      "size": 613,
      "sha256": "64b1b317b859e8b98d2802ecc2ff5be7edfcb82d4c641a4aa4a5a4d18fc4841b"
     },
     {
      "path": "manifest.json",
-     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/16f3dd0a5d304215979f652c2397bfabdd32da48/onnx/manifest.json",
-     "size": 31335,
-     "sha256": "b47a3ef55ac22830de9c490572a8fe3772ec77a557b1668337cc3ae6b70168d9"
+     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/7c7fcc18935ac37a95010c02ffe3f034f83e93ce/webgpu/manifest.json",
+     "size": 36944,
+     "sha256": "18eafa8ee994913bed52cfc14f8b65e9bb5ffab64cf3dbec39b07f608d0eb153"
     },
     {
      "path": "onnx/components/duration_predictor.onnx",
-     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/16f3dd0a5d304215979f652c2397bfabdd32da48/onnx/onnx/components/duration_predictor.onnx",
-     "size": 285353,
-     "sha256": "b9c93f9e1819b9169f87cd6d9261cb2194cbf46f13407a279aad90fc5d122d48"
+     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/7c7fcc18935ac37a95010c02ffe3f034f83e93ce/webgpu/onnx/components/duration_predictor.onnx",
+     "size": 181235,
+     "sha256": "06b1d7f1ffd4d7bcf8b3681d486f33755dde2553195b083f607aff2e20b7a82c"
     },
     {
      "path": "onnx/components/pitch_context_encoder.onnx",
-     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/16f3dd0a5d304215979f652c2397bfabdd32da48/onnx/onnx/components/pitch_context_encoder.onnx",
-     "size": 65849,
-     "sha256": "bfcca781a5e1d149c1ed624f61bbd6f3161ee51a4b822eaf8f7c9263afbbc288"
+     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/7c7fcc18935ac37a95010c02ffe3f034f83e93ce/webgpu/onnx/components/pitch_context_encoder.onnx",
+     "size": 39653,
+     "sha256": "d84b04434b65a72a76d7b9c2054d455522ad34bb7c2fdce9612a41960234056c"
     },
     {
      "path": "onnx/components/pitch_estimator_128.onnx",
-     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/16f3dd0a5d304215979f652c2397bfabdd32da48/onnx/onnx/components/pitch_estimator_128.onnx",
-     "size": 619451,
-     "sha256": "09d27a5bc9bec16f6b7399edf924a64cd82fe006c39ba0abe60de838c937538d"
+     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/7c7fcc18935ac37a95010c02ffe3f034f83e93ce/webgpu/onnx/components/pitch_estimator_128.onnx",
+     "size": 489844,
+     "sha256": "68ce39c4738a8df892cbe481dec00501ed65c7fec19a36c2f2cf4b6d95b3c80e"
     },
     {
      "path": "onnx/components/pitch_estimator_256.onnx",
-     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/16f3dd0a5d304215979f652c2397bfabdd32da48/onnx/onnx/components/pitch_estimator_256.onnx",
-     "size": 821179,
-     "sha256": "3baeb767d616a0b7d3cede0919d73ecb910bf44cc8cee25de6f31cf1087be544"
+     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/7c7fcc18935ac37a95010c02ffe3f034f83e93ce/webgpu/onnx/components/pitch_estimator_256.onnx",
+     "size": 691572,
+     "sha256": "0b2b252ea0c0661548f9ef048e8143e18e13d98c884b73b64315c62a14ad4793"
     },
     {
      "path": "onnx/components/pitch_estimator_384.onnx",
-     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/16f3dd0a5d304215979f652c2397bfabdd32da48/onnx/onnx/components/pitch_estimator_384.onnx",
-     "size": 1022907,
-     "sha256": "835ef356dc31b8d66e0ec21be2f2151d7ea257ae75b341219111fe137e1dc894"
+     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/7c7fcc18935ac37a95010c02ffe3f034f83e93ce/webgpu/onnx/components/pitch_estimator_384.onnx",
+     "size": 893300,
+     "sha256": "e53d92f8d1f77eed49e0ad93fb4c991e6b59c53cf262e75f4bc3632fa23b9be4"
     },
     {
      "path": "onnx/components/pitch_estimator_512.onnx",
-     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/16f3dd0a5d304215979f652c2397bfabdd32da48/onnx/onnx/components/pitch_estimator_512.onnx",
-     "size": 1224635,
-     "sha256": "f2ef48ef221b80bc081b32861c2ed5d3f5b597871ad6797139bea2ac99ad3e5e"
+     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/7c7fcc18935ac37a95010c02ffe3f034f83e93ce/webgpu/onnx/components/pitch_estimator_512.onnx",
+     "size": 1095028,
+     "sha256": "d40325815617d4a1398f43743ebc29d3fed79ff5faade3f7243b58894547ddb2"
     },
     {
      "path": "onnx/components/pitch_estimator_768.onnx",
-     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/16f3dd0a5d304215979f652c2397bfabdd32da48/onnx/onnx/components/pitch_estimator_768.onnx",
-     "size": 1628091,
-     "sha256": "84fda439244b4a30258c61b31e9e70400a5ffd537c7a7a61cf0a1a61456b240d"
+     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/7c7fcc18935ac37a95010c02ffe3f034f83e93ce/webgpu/onnx/components/pitch_estimator_768.onnx",
+     "size": 1498484,
+     "sha256": "0433ca309d545c9b183ca3d097a35cee385c1de3ceb4ff40c30b6bd1b23d9b7d"
     },
     {
      "path": "onnx/components/pitch_estimator.onnx",
-     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/16f3dd0a5d304215979f652c2397bfabdd32da48/onnx/onnx/components/pitch_estimator.onnx",
-     "size": 2031547,
-     "sha256": "f05caa16ef9a9516d5037ff7765b68cee6991bdf91dc3f588461d2fdbc35d950"
+     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/7c7fcc18935ac37a95010c02ffe3f034f83e93ce/webgpu/onnx/components/pitch_estimator.onnx",
+     "size": 1901940,
+     "sha256": "669aeb85fe4e48702dc5d9aed59099675ad122ae08cb2ba1d305c61d2f69e1ed"
     },
     {
      "path": "onnx/components/shared_weights.bin",
-     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/16f3dd0a5d304215979f652c2397bfabdd32da48/onnx/onnx/components/shared_weights.bin",
-     "size": 242837184,
-     "sha256": "b277a31a746bc5bc358198b4064824544dbb92176624a276d87ef5e9146ee0af"
+     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/7c7fcc18935ac37a95010c02ffe3f034f83e93ce/webgpu/onnx/components/shared_weights.bin",
+     "size": 241440320,
+     "sha256": "e73a960c4df402e1a19ba2665e9d9384eeaa18e74ee2bbdbb34eb34461174eb4"
     },
     {
      "path": "onnx/components/vector_context_encoder.onnx",
-     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/16f3dd0a5d304215979f652c2397bfabdd32da48/onnx/onnx/components/vector_context_encoder.onnx",
-     "size": 66364,
-     "sha256": "92d919d9c94afb96ddf5e598d9f58783bbc2a071d4836883b617c271d8090aa7"
+     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/7c7fcc18935ac37a95010c02ffe3f034f83e93ce/webgpu/onnx/components/vector_context_encoder.onnx",
+     "size": 39660,
+     "sha256": "1728b3516f931b986c7d573a468dee82c4f44e677ff2f5d8ce42545847b19515"
     },
     {
      "path": "onnx/components/vector_estimator_128.onnx",
-     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/16f3dd0a5d304215979f652c2397bfabdd32da48/onnx/onnx/components/vector_estimator_128.onnx",
-     "size": 916679,
-     "sha256": "50db3a3f224483d93ab5a3714096e2a91f267bf83dc4605e33d7b636fc350a07"
+     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/7c7fcc18935ac37a95010c02ffe3f034f83e93ce/webgpu/onnx/components/vector_estimator_128.onnx",
+     "size": 720387,
+     "sha256": "4838e8286ad1f3e042b2921bcd63f587a2959a26ba32b4396ade4860dd5c5fac"
     },
     {
      "path": "onnx/components/vector_estimator_256.onnx",
-     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/16f3dd0a5d304215979f652c2397bfabdd32da48/onnx/onnx/components/vector_estimator_256.onnx",
-     "size": 1185991,
-     "sha256": "18a24829b3fe2f4feee8c0b1b697fc02444339a685921c30ea944d06b554a793"
+     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/7c7fcc18935ac37a95010c02ffe3f034f83e93ce/webgpu/onnx/components/vector_estimator_256.onnx",
+     "size": 989699,
+     "sha256": "95dfb2af0446697f53078aa4971e1b4f1177ca60b3d106a1d2f13ed08a65d075"
     },
     {
      "path": "onnx/components/vector_estimator_384.onnx",
-     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/16f3dd0a5d304215979f652c2397bfabdd32da48/onnx/onnx/components/vector_estimator_384.onnx",
-     "size": 1455303,
-     "sha256": "9d161df9ab8c396701093013a9effaabda2de45446c6ccb566507154bbf44968"
+     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/7c7fcc18935ac37a95010c02ffe3f034f83e93ce/webgpu/onnx/components/vector_estimator_384.onnx",
+     "size": 1259011,
+     "sha256": "d7fb50975d78ffc443edc8a00a63ff820180b8681eec2382d7b3255a8ea9495a"
     },
     {
      "path": "onnx/components/vector_estimator_512.onnx",
-     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/16f3dd0a5d304215979f652c2397bfabdd32da48/onnx/onnx/components/vector_estimator_512.onnx",
-     "size": 1724615,
-     "sha256": "fc09ee20b59c8d1c3d8d18c12cb332fa728199758b18ff5fb8c7971d0a01a402"
+     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/7c7fcc18935ac37a95010c02ffe3f034f83e93ce/webgpu/onnx/components/vector_estimator_512.onnx",
+     "size": 1528323,
+     "sha256": "03bd769fb7b947724daa656c454c4106715153a0cfba9d2d53857fc2a1a93050"
     },
     {
      "path": "onnx/components/vector_estimator_768.onnx",
-     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/16f3dd0a5d304215979f652c2397bfabdd32da48/onnx/onnx/components/vector_estimator_768.onnx",
-     "size": 2263240,
-     "sha256": "b74817fdcfae8e92041538242fff900b4b80d6eaf2e37321bcd17c14033406fe"
+     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/7c7fcc18935ac37a95010c02ffe3f034f83e93ce/webgpu/onnx/components/vector_estimator_768.onnx",
+     "size": 2066947,
+     "sha256": "bacd45f00647a95163b4f18e7ef331f39fb2b73f07ac2ec224daf267d15e7bee"
     },
     {
      "path": "onnx/components/vector_estimator.onnx",
-     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/16f3dd0a5d304215979f652c2397bfabdd32da48/onnx/onnx/components/vector_estimator.onnx",
-     "size": 2801868,
-     "sha256": "b113775c147ddc01a4e7f13da108e24a728618b8078793d5f3df3b3b3f82a97b"
+     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/7c7fcc18935ac37a95010c02ffe3f034f83e93ce/webgpu/onnx/components/vector_estimator.onnx",
+     "size": 2605576,
+     "sha256": "382b01fe30f253332a57be01a26f2acd628faaa7a44a4e136f526920102d1fd1"
     },
     {
      "path": "onnx/components/vocoder_128.onnx",
-     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/16f3dd0a5d304215979f652c2397bfabdd32da48/onnx/onnx/components/vocoder_128.onnx",
-     "size": 122571,
-     "sha256": "0584bcd2e8cce5cbd4af4da493d1c181fc48604de84d59281ad7675abfbaa92b"
+     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/7c7fcc18935ac37a95010c02ffe3f034f83e93ce/webgpu/onnx/components/vocoder_128.onnx",
+     "size": 122574,
+     "sha256": "b3bd10c095b2d5896c7308635fc8157d9c437cbe9b58d066cadd8c380ed54036"
     },
     {
      "path": "onnx/components/vocoder_256.onnx",
-     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/16f3dd0a5d304215979f652c2397bfabdd32da48/onnx/onnx/components/vocoder_256.onnx",
-     "size": 122570,
-     "sha256": "cb7b3336a4b11ce41b95a29562e6581233f6f2f235a183aa21550ecdc5a60564"
+     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/7c7fcc18935ac37a95010c02ffe3f034f83e93ce/webgpu/onnx/components/vocoder_256.onnx",
+     "size": 122573,
+     "sha256": "3d171398406b5212611be97639b2c0e6d2aec148a82b9f621c86fdead3c802d0"
     },
     {
      "path": "onnx/components/vocoder_384.onnx",
-     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/16f3dd0a5d304215979f652c2397bfabdd32da48/onnx/onnx/components/vocoder_384.onnx",
-     "size": 122571,
-     "sha256": "1be64196d6f997db387b0357e6e0dcafa4c9c3ceae020c087159f84517b6c9ec"
+     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/7c7fcc18935ac37a95010c02ffe3f034f83e93ce/webgpu/onnx/components/vocoder_384.onnx",
+     "size": 122574,
+     "sha256": "613fdacdbadfa33aa97b2f336aa4a0fefbb4772282592108a71692e32e7512e0"
     },
     {
      "path": "onnx/components/vocoder_512.onnx",
-     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/16f3dd0a5d304215979f652c2397bfabdd32da48/onnx/onnx/components/vocoder_512.onnx",
-     "size": 122571,
-     "sha256": "8d01ac6c7388ceb127fe6d871536eff25c99e1bc89874587ae984de2e1213d80"
+     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/7c7fcc18935ac37a95010c02ffe3f034f83e93ce/webgpu/onnx/components/vocoder_512.onnx",
+     "size": 122574,
+     "sha256": "6a7e85d2032beda153dc48526844cdba1177d1f3ee41558cbbefa18e8b1aaf51"
     },
     {
      "path": "onnx/components/vocoder_768.onnx",
-     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/16f3dd0a5d304215979f652c2397bfabdd32da48/onnx/onnx/components/vocoder_768.onnx",
-     "size": 122572,
-     "sha256": "5aac88a992e767157f947291122b900e444efdd6ccc2f374a03db14bc1d58d8e"
+     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/7c7fcc18935ac37a95010c02ffe3f034f83e93ce/webgpu/onnx/components/vocoder_768.onnx",
+     "size": 122575,
+     "sha256": "666d4138467e8d843386c65918763e37ae822c021b0c2ee0774a44f7a4780039"
     },
     {
      "path": "onnx/components/vocoder.onnx",
-     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/16f3dd0a5d304215979f652c2397bfabdd32da48/onnx/onnx/components/vocoder.onnx",
-     "size": 122571,
-     "sha256": "56dec53a1964f490da136eedef6e1f3e06d7c0eb403baebb87d635a7e0debe7b"
+     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/7c7fcc18935ac37a95010c02ffe3f034f83e93ce/webgpu/onnx/components/vocoder.onnx",
+     "size": 122575,
+     "sha256": "b2deed8b859f6a32d214fc15b2df54caea2164f5680108a2b336c0297d129862"
     },
     {
      "path": "onnx/g2p/model.onnx",
-     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/16f3dd0a5d304215979f652c2397bfabdd32da48/onnx/onnx/g2p/model.onnx",
-     "size": 40420257,
-     "sha256": "b733b7cedef6ec1c1822771f8b5d7ce430fdc7b4c4d7aac0617044419d0e3296"
+     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/7c7fcc18935ac37a95010c02ffe3f034f83e93ce/webgpu/onnx/g2p/model.onnx",
+     "size": 43687646,
+     "sha256": "93c88bcfb084e764a018ff8d6e95de437fc883d8044f00ac5c2a2f346984eb6e"
     }
    ]
   },
   "webgpu": {
    "folder": "webgpu",
-   "bytes": 303453420,
+   "bytes": 303470186,
    "files": [
     {
      "path": "assets/fixed_references.json",
-     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/16f3dd0a5d304215979f652c2397bfabdd32da48/webgpu/assets/fixed_references.json",
+     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/7c7fcc18935ac37a95010c02ffe3f034f83e93ce/webgpu/assets/fixed_references.json",
      "size": 1555673,
      "sha256": "f227c55cab5f6b8cffa33c3dd743e69b26c7e446be5b9cd9a286095cabaa249e"
     },
     {
      "path": "assets/g2p/export_config.json",
-     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/16f3dd0a5d304215979f652c2397bfabdd32da48/webgpu/assets/g2p/export_config.json",
+     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/7c7fcc18935ac37a95010c02ffe3f034f83e93ce/webgpu/assets/g2p/export_config.json",
      "size": 928,
      "sha256": "0ec5ea81f346521f3a5c9c4a90b939c6b5143b1a11cc5e74b9902969db56e568"
     },
     {
      "path": "assets/g2p/language_map.json",
-     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/16f3dd0a5d304215979f652c2397bfabdd32da48/webgpu/assets/g2p/language_map.json",
+     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/7c7fcc18935ac37a95010c02ffe3f034f83e93ce/webgpu/assets/g2p/language_map.json",
      "size": 844,
      "sha256": "b3db2048b492799f8746b43001e0f7411eb5d359e17cabc6bfce4a7bccbfdd99"
     },
     {
      "path": "assets/g2p/normalization.json",
-     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/16f3dd0a5d304215979f652c2397bfabdd32da48/webgpu/assets/g2p/normalization.json",
+     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/7c7fcc18935ac37a95010c02ffe3f034f83e93ce/webgpu/assets/g2p/normalization.json",
      "size": 1090,
      "sha256": "f9ca4fe4e4eca5e02b6f2874f5da6ede8b44b25c71c3c6ac00f96d7397024de6"
     },
     {
      "path": "assets/g2p/phoneme_dict.json",
-     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/16f3dd0a5d304215979f652c2397bfabdd32da48/webgpu/assets/g2p/phoneme_dict.json",
+     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/7c7fcc18935ac37a95010c02ffe3f034f83e93ce/webgpu/assets/g2p/phoneme_dict.json",
      "size": 93,
      "sha256": "9cfb40b2fd31d7a32351c33f90230062554a4dc0a44e89f722de211d42ed1875"
     },
     {
      "path": "assets/g2p/pronunciation_overrides.json",
-     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/16f3dd0a5d304215979f652c2397bfabdd32da48/webgpu/assets/g2p/pronunciation_overrides.json",
+     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/7c7fcc18935ac37a95010c02ffe3f034f83e93ce/webgpu/assets/g2p/pronunciation_overrides.json",
      "size": 80,
      "sha256": "a1f311379b76cb44719a2242a93a4046ff5f344cdac613374288234c2817eb59"
     },
     {
      "path": "assets/g2p/tokenizer.json",
-     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/16f3dd0a5d304215979f652c2397bfabdd32da48/webgpu/assets/g2p/tokenizer.json",
+     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/7c7fcc18935ac37a95010c02ffe3f034f83e93ce/webgpu/assets/g2p/tokenizer.json",
      "size": 7769,
      "sha256": "4843d57a422b0a6045bbc6fc9a99afa329126a6742ff95ebcefcda660f3ee474"
     },
     {
      "path": "assets/languages.json",
-     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/16f3dd0a5d304215979f652c2397bfabdd32da48/webgpu/assets/languages.json",
+     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/7c7fcc18935ac37a95010c02ffe3f034f83e93ce/webgpu/assets/languages.json",
      "size": 289,
      "sha256": "f2af2233d0a1c0dbb6e6236fd57592d12da84262fdd1a336ead1ee83a657e2ae"
     },
     {
      "path": "assets/phone_vocab.json",
-     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/16f3dd0a5d304215979f652c2397bfabdd32da48/webgpu/assets/phone_vocab.json",
+     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/7c7fcc18935ac37a95010c02ffe3f034f83e93ce/webgpu/assets/phone_vocab.json",
      "size": 1793,
      "sha256": "83e6457a69948edbd9a94b404c22fd408c263eb0d0b5acaafa4926e994587721"
     },
     {
      "path": "assets/voices.json",
-     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/16f3dd0a5d304215979f652c2397bfabdd32da48/webgpu/assets/voices.json",
+     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/7c7fcc18935ac37a95010c02ffe3f034f83e93ce/webgpu/assets/voices.json",
      "size": 613,
      "sha256": "64b1b317b859e8b98d2802ecc2ff5be7edfcb82d4c641a4aa4a5a4d18fc4841b"
     },
     {
      "path": "manifest.json",
-     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/16f3dd0a5d304215979f652c2397bfabdd32da48/webgpu/manifest.json",
-     "size": 31898,
-     "sha256": "939b0b5174220621d6af9d8a9a892a017fef63236932827419085d87195088dc"
+     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/7c7fcc18935ac37a95010c02ffe3f034f83e93ce/webgpu/manifest.json",
+     "size": 36944,
+     "sha256": "18eafa8ee994913bed52cfc14f8b65e9bb5ffab64cf3dbec39b07f608d0eb153"
     },
     {
      "path": "onnx/components/duration_predictor.onnx",
-     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/16f3dd0a5d304215979f652c2397bfabdd32da48/webgpu/onnx/components/duration_predictor.onnx",
-     "size": 181227,
-     "sha256": "9dfb1cfc9c394a700b01df05b5182ba7ac974df0f2e6f97a3b9f4cafbd0b08dc"
+     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/7c7fcc18935ac37a95010c02ffe3f034f83e93ce/webgpu/onnx/components/duration_predictor.onnx",
+     "size": 181235,
+     "sha256": "06b1d7f1ffd4d7bcf8b3681d486f33755dde2553195b083f607aff2e20b7a82c"
     },
     {
      "path": "onnx/components/pitch_context_encoder.onnx",
-     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/16f3dd0a5d304215979f652c2397bfabdd32da48/webgpu/onnx/components/pitch_context_encoder.onnx",
-     "size": 39650,
-     "sha256": "d9fc9ec6de447378d21ea7ab0aae9c7b3221df5526c738a11f10b0d98dfba771"
+     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/7c7fcc18935ac37a95010c02ffe3f034f83e93ce/webgpu/onnx/components/pitch_context_encoder.onnx",
+     "size": 39653,
+     "sha256": "d84b04434b65a72a76d7b9c2054d455522ad34bb7c2fdce9612a41960234056c"
     },
     {
      "path": "onnx/components/pitch_estimator_128.onnx",
-     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/16f3dd0a5d304215979f652c2397bfabdd32da48/webgpu/onnx/components/pitch_estimator_128.onnx",
-     "size": 489842,
-     "sha256": "ca6712501997b33572705fd986f95bc67286f57d610cff41fb2024169ba6bfb6"
+     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/7c7fcc18935ac37a95010c02ffe3f034f83e93ce/webgpu/onnx/components/pitch_estimator_128.onnx",
+     "size": 489844,
+     "sha256": "68ce39c4738a8df892cbe481dec00501ed65c7fec19a36c2f2cf4b6d95b3c80e"
     },
     {
      "path": "onnx/components/pitch_estimator_256.onnx",
-     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/16f3dd0a5d304215979f652c2397bfabdd32da48/webgpu/onnx/components/pitch_estimator_256.onnx",
-     "size": 691570,
-     "sha256": "3f154cf35686087af43b9e6cfd7c01e9ad4d5dafbeaafa2137c287e3c7257d8d"
+     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/7c7fcc18935ac37a95010c02ffe3f034f83e93ce/webgpu/onnx/components/pitch_estimator_256.onnx",
+     "size": 691572,
+     "sha256": "0b2b252ea0c0661548f9ef048e8143e18e13d98c884b73b64315c62a14ad4793"
     },
     {
      "path": "onnx/components/pitch_estimator_384.onnx",
-     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/16f3dd0a5d304215979f652c2397bfabdd32da48/webgpu/onnx/components/pitch_estimator_384.onnx",
-     "size": 893298,
-     "sha256": "bfd7fbf164b87a4622b6ab50e33979d47fe899f994efc1ad8fd8f762fac1d086"
+     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/7c7fcc18935ac37a95010c02ffe3f034f83e93ce/webgpu/onnx/components/pitch_estimator_384.onnx",
+     "size": 893300,
+     "sha256": "e53d92f8d1f77eed49e0ad93fb4c991e6b59c53cf262e75f4bc3632fa23b9be4"
     },
     {
      "path": "onnx/components/pitch_estimator_512.onnx",
-     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/16f3dd0a5d304215979f652c2397bfabdd32da48/webgpu/onnx/components/pitch_estimator_512.onnx",
-     "size": 1095026,
-     "sha256": "336ac6ab367b785f055027c7717f2619e547d2c3307e2991e1ecd43283a393ec"
+     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/7c7fcc18935ac37a95010c02ffe3f034f83e93ce/webgpu/onnx/components/pitch_estimator_512.onnx",
+     "size": 1095028,
+     "sha256": "d40325815617d4a1398f43743ebc29d3fed79ff5faade3f7243b58894547ddb2"
     },
     {
      "path": "onnx/components/pitch_estimator_768.onnx",
-     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/16f3dd0a5d304215979f652c2397bfabdd32da48/webgpu/onnx/components/pitch_estimator_768.onnx",
-     "size": 1498482,
-     "sha256": "46ba6f3efc3e0bd64a11843bec1d7624e6b119d176b0a239ca79751c419474b9"
+     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/7c7fcc18935ac37a95010c02ffe3f034f83e93ce/webgpu/onnx/components/pitch_estimator_768.onnx",
+     "size": 1498484,
+     "sha256": "0433ca309d545c9b183ca3d097a35cee385c1de3ceb4ff40c30b6bd1b23d9b7d"
     },
     {
      "path": "onnx/components/pitch_estimator.onnx",
-     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/16f3dd0a5d304215979f652c2397bfabdd32da48/webgpu/onnx/components/pitch_estimator.onnx",
-     "size": 1901938,
-     "sha256": "8586d86879fed00a7673d5b121dd5ff41f3f161667e80c5f54a5adbfbce047d0"
+     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/7c7fcc18935ac37a95010c02ffe3f034f83e93ce/webgpu/onnx/components/pitch_estimator.onnx",
+     "size": 1901940,
+     "sha256": "669aeb85fe4e48702dc5d9aed59099675ad122ae08cb2ba1d305c61d2f69e1ed"
     },
     {
      "path": "onnx/components/shared_weights.bin",
-     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/16f3dd0a5d304215979f652c2397bfabdd32da48/webgpu/onnx/components/shared_weights.bin",
-     "size": 241432128,
-     "sha256": "8a17efb3dea9b11f05f72cf7dc1f95e0b021ebdcbc1d243272fd178907c78be5"
+     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/7c7fcc18935ac37a95010c02ffe3f034f83e93ce/webgpu/onnx/components/shared_weights.bin",
+     "size": 241440320,
+     "sha256": "e73a960c4df402e1a19ba2665e9d9384eeaa18e74ee2bbdbb34eb34461174eb4"
     },
     {
      "path": "onnx/components/vector_context_encoder.onnx",
-     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/16f3dd0a5d304215979f652c2397bfabdd32da48/webgpu/onnx/components/vector_context_encoder.onnx",
-     "size": 39654,
-     "sha256": "69865d4c7e7424788fc4c2d09f0f9cb7399732b82e3540156017d8ab27601a1d"
+     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/7c7fcc18935ac37a95010c02ffe3f034f83e93ce/webgpu/onnx/components/vector_context_encoder.onnx",
+     "size": 39660,
+     "sha256": "1728b3516f931b986c7d573a468dee82c4f44e677ff2f5d8ce42545847b19515"
     },
     {
      "path": "onnx/components/vector_estimator_128.onnx",
-     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/16f3dd0a5d304215979f652c2397bfabdd32da48/webgpu/onnx/components/vector_estimator_128.onnx",
-     "size": 719809,
-     "sha256": "a57a54bc47cca1996e759f211172998e9b2651a76aa0c0f7e02e0e04c3b2bb9c"
+     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/7c7fcc18935ac37a95010c02ffe3f034f83e93ce/webgpu/onnx/components/vector_estimator_128.onnx",
+     "size": 720387,
+     "sha256": "4838e8286ad1f3e042b2921bcd63f587a2959a26ba32b4396ade4860dd5c5fac"
     },
     {
      "path": "onnx/components/vector_estimator_256.onnx",
-     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/16f3dd0a5d304215979f652c2397bfabdd32da48/webgpu/onnx/components/vector_estimator_256.onnx",
-     "size": 989121,
-     "sha256": "6300b35af4cca9c8cee5037478c5f259466e5e541e285c8d2ff4c7b5f54db29a"
+     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/7c7fcc18935ac37a95010c02ffe3f034f83e93ce/webgpu/onnx/components/vector_estimator_256.onnx",
+     "size": 989699,
+     "sha256": "95dfb2af0446697f53078aa4971e1b4f1177ca60b3d106a1d2f13ed08a65d075"
     },
     {
      "path": "onnx/components/vector_estimator_384.onnx",
-     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/16f3dd0a5d304215979f652c2397bfabdd32da48/webgpu/onnx/components/vector_estimator_384.onnx",
-     "size": 1258433,
-     "sha256": "6b57a1d5396f0e2ce8920fc9e34060bf492cb4b044c45c9d56dcbabfe3658444"
+     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/7c7fcc18935ac37a95010c02ffe3f034f83e93ce/webgpu/onnx/components/vector_estimator_384.onnx",
+     "size": 1259011,
+     "sha256": "d7fb50975d78ffc443edc8a00a63ff820180b8681eec2382d7b3255a8ea9495a"
     },
     {
      "path": "onnx/components/vector_estimator_512.onnx",
-     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/16f3dd0a5d304215979f652c2397bfabdd32da48/webgpu/onnx/components/vector_estimator_512.onnx",
-     "size": 1527745,
-     "sha256": "51204ea2493e45f2160531e161c3d347bb659819bb1c972cf416e25ce3178d04"
+     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/7c7fcc18935ac37a95010c02ffe3f034f83e93ce/webgpu/onnx/components/vector_estimator_512.onnx",
+     "size": 1528323,
+     "sha256": "03bd769fb7b947724daa656c454c4106715153a0cfba9d2d53857fc2a1a93050"
     },
     {
      "path": "onnx/components/vector_estimator_768.onnx",
-     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/16f3dd0a5d304215979f652c2397bfabdd32da48/webgpu/onnx/components/vector_estimator_768.onnx",
-     "size": 2066369,
-     "sha256": "f23d90007ac0d6a6a64600ec444a2e8a428035725cb393d41be9b124f69e0b02"
+     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/7c7fcc18935ac37a95010c02ffe3f034f83e93ce/webgpu/onnx/components/vector_estimator_768.onnx",
+     "size": 2066947,
+     "sha256": "bacd45f00647a95163b4f18e7ef331f39fb2b73f07ac2ec224daf267d15e7bee"
     },
     {
      "path": "onnx/components/vector_estimator.onnx",
-     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/16f3dd0a5d304215979f652c2397bfabdd32da48/webgpu/onnx/components/vector_estimator.onnx",
-     "size": 2604998,
-     "sha256": "2d530480d1828a741664e0c67aa413cbe5295ccd22af8d82e8228043b8b55149"
+     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/7c7fcc18935ac37a95010c02ffe3f034f83e93ce/webgpu/onnx/components/vector_estimator.onnx",
+     "size": 2605576,
+     "sha256": "382b01fe30f253332a57be01a26f2acd628faaa7a44a4e136f526920102d1fd1"
     },
     {
      "path": "onnx/components/vocoder_128.onnx",
-     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/16f3dd0a5d304215979f652c2397bfabdd32da48/webgpu/onnx/components/vocoder_128.onnx",
-     "size": 122569,
-     "sha256": "78bbaa9d067316e770a89a1700881eea3109b64ffaec6982e2395e30b2131cec"
+     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/7c7fcc18935ac37a95010c02ffe3f034f83e93ce/webgpu/onnx/components/vocoder_128.onnx",
+     "size": 122574,
+     "sha256": "b3bd10c095b2d5896c7308635fc8157d9c437cbe9b58d066cadd8c380ed54036"
     },
     {
      "path": "onnx/components/vocoder_256.onnx",
-     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/16f3dd0a5d304215979f652c2397bfabdd32da48/webgpu/onnx/components/vocoder_256.onnx",
-     "size": 122568,
-     "sha256": "a954c50bc1e0348694e339ea9b01d659be8979903d7d4b0df2368c0a055abfbb"
+     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/7c7fcc18935ac37a95010c02ffe3f034f83e93ce/webgpu/onnx/components/vocoder_256.onnx",
+     "size": 122573,
+     "sha256": "3d171398406b5212611be97639b2c0e6d2aec148a82b9f621c86fdead3c802d0"
     },
     {
      "path": "onnx/components/vocoder_384.onnx",
-     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/16f3dd0a5d304215979f652c2397bfabdd32da48/webgpu/onnx/components/vocoder_384.onnx",
-     "size": 122569,
-     "sha256": "cc8557565fd76b584eab5eb497cf340bc0243d329cef5ebfc4737c0ed847f862"
+     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/7c7fcc18935ac37a95010c02ffe3f034f83e93ce/webgpu/onnx/components/vocoder_384.onnx",
+     "size": 122574,
+     "sha256": "613fdacdbadfa33aa97b2f336aa4a0fefbb4772282592108a71692e32e7512e0"
     },
     {
      "path": "onnx/components/vocoder_512.onnx",
-     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/16f3dd0a5d304215979f652c2397bfabdd32da48/webgpu/onnx/components/vocoder_512.onnx",
-     "size": 122569,
-     "sha256": "2dc06973d1a37da9cd6a059d2562b0c7fd24072bb0a96e8b1fb415ec9fded73f"
+     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/7c7fcc18935ac37a95010c02ffe3f034f83e93ce/webgpu/onnx/components/vocoder_512.onnx",
+     "size": 122574,
+     "sha256": "6a7e85d2032beda153dc48526844cdba1177d1f3ee41558cbbefa18e8b1aaf51"
     },
     {
      "path": "onnx/components/vocoder_768.onnx",
-     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/16f3dd0a5d304215979f652c2397bfabdd32da48/webgpu/onnx/components/vocoder_768.onnx",
-     "size": 122570,
-     "sha256": "23183dc17d4e4635a437919f41729641fbcb01ad2d4b2e66cb2092c377fb4c5b"
+     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/7c7fcc18935ac37a95010c02ffe3f034f83e93ce/webgpu/onnx/components/vocoder_768.onnx",
+     "size": 122575,
+     "sha256": "666d4138467e8d843386c65918763e37ae822c021b0c2ee0774a44f7a4780039"
     },
     {
      "path": "onnx/components/vocoder.onnx",
-     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/16f3dd0a5d304215979f652c2397bfabdd32da48/webgpu/onnx/components/vocoder.onnx",
-     "size": 122569,
-     "sha256": "c9fe2552e1d1bb2a1395684679f3e971c22ca382af4df5d83f4451dad8b5c624"
+     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/7c7fcc18935ac37a95010c02ffe3f034f83e93ce/webgpu/onnx/components/vocoder.onnx",
+     "size": 122575,
+     "sha256": "b2deed8b859f6a32d214fc15b2df54caea2164f5680108a2b336c0297d129862"
     },
     {
      "path": "onnx/g2p/model.onnx",
-     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/16f3dd0a5d304215979f652c2397bfabdd32da48/webgpu/onnx/g2p/model.onnx",
+     "url": "https://huggingface.co/spybyscript/scyllasband/resolve/7c7fcc18935ac37a95010c02ffe3f034f83e93ce/webgpu/onnx/g2p/model.onnx",
      "size": 43687646,
-     "sha256": "8090878377b02c22b05d8d9a4e52ac2782642fb026e5d6b2471f2c61fc5eb204"
+     "sha256": "93c88bcfb084e764a018ff8d6e95de437fc883d8044f00ac5c2a2f346984eb6e"
     }
    ]
   }

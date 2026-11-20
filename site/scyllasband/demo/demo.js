@@ -69,9 +69,9 @@ const handlers = {
   status({ pin: p, missingBytes }) {
     pin = p;
     document.querySelectorAll('[data-size]').forEach((el) => { el.textContent = mb(pin.bytes); });
-    els['model-info'].textContent = `Model: ${pin.repo} at revision ${pin.revision.slice(0, 7)} (${pin.ref}), ` +
-      `${pin.backend === 'webgpu' ? 'WebGPU' : 'ONNX'} bundle. Runtime: libscyllasband compiled to WebAssembly, with ONNX Runtime ` +
-      `Web 1.30.0 on ${pin.backend === 'webgpu' ? 'the GPU (WebGPU)' : 'the CPU (WebAssembly)'}.`;
+    els['model-info'].textContent = `Model: ${pin.repo} at revision ${pin.revision.slice(0, 7)} (${pin.ref}), the speech graphs ` +
+      `of the WebGPU bundle (8-bit weights). Runtime: libscyllasband compiled to WebAssembly, with ONNX Runtime Web 1.30.0 on ` +
+      `${pin.backend === 'webgpu' ? 'the GPU (WebGPU)' : 'the CPU (WebAssembly)'}.`;
     const stored = missingBytes === 0;
     els['storage-text'].textContent = stored
       ? `The model (${mb(pin.bytes)}) is stored in this browser.`
