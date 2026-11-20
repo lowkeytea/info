@@ -103,7 +103,7 @@ model's own output (script, melody scores, the runtime, a Remotion renderer); th
 
 `site/scyllasband/demo/` runs Scylla's Band in the visitor's browser, and nothing is hosted besides the page itself.
 
-- **Model:** downloaded from Hugging Face on the visitor's click, at the exact commit and SHA-256 hashes listed in `model-files.json`, kept in Cache Storage and deletable from the page. The worker downloads one of two bundles: `webgpu/` (342 MB) where the browser has a WebGPU adapter, otherwise `onnx/` (337 MB).
+- **Model:** downloaded from Hugging Face on the visitor's click, at the exact commit and SHA-256 hashes listed in `model-files.json`, kept in Cache Storage and deletable from the page. Both the GPU and the CPU path read the speech graphs of the `webgpu/` bundle (8-bit weights, 303 MB on `v4-20261106-web`), so they share one download. From v4 the `onnx/` bundle is mostly full precision (about twice the size, and slower in WebAssembly). The pinned tag must keep the BigVGAN singing decoder's weights in their own file (`bigvgan_weights.bin`, as on the `-web` tags) so the demo can skip them; singing in the browser is planned for v5.
 - **Engine:** `engine/scyllasband.wasm` is the unmodified `libscyllasband` C++ engine and text front end compiled with Emscripten. Its graph calls go to ONNX Runtime Web 1.30.0 (`ort/`, MIT), running in `worker.js`:
   - **GPU:** the WebGPU backend. Browsers with JSPI (recent Chrome and Edge) use `ort.jspi.min.mjs` and its 16 MiB WebAssembly file. Other WebGPU browsers use `ort.webgpu.min.mjs`, whose 25.5 MiB `ort-wasm-simd-threaded.asyncify.wasm` is over the host's 25 MiB per-file limit, so the worker loads that one file from the jsDelivr npm CDN (CORS, so it loads under COEP).
   - **CPU:** the plain WASM build (`ort.wasm.min.mjs`). `?backend=cpu` forces it where WebGPU is available, for comparing the two.
@@ -113,7 +113,7 @@ model's own output (script, melody scores, the runtime, a Remotion renderer); th
 
 To update it:
 
-- **New model release:** `node demo-src/pin-model.mjs <tag-or-commit>` rewrites `model-files.json` with both bundles. Visitors' browsers drop the old files and download the new ones. Before an upload, `node demo-src/pin-model.mjs --local <base-url> <onnx-dir> <webgpu-dir>` pins local copies for testing (don't commit that pin).
+- **New model release:** `node demo-src/pin-model.mjs <tag-or-commit>` rewrites `model-files.json` with both bundles. Visitors' browsers drop the old files and download the new ones. Before an upload, `node demo-src/pin-model.mjs --local <base-url> <webgpu-dir> <webgpu-dir>` pins local copies for testing (don't commit that pin).
 - **New runtime version:** `EMSDK=/path/to/emsdk demo-src/build-wasm.sh /path/to/scyllasband` rebuilds `engine/` from a checkout. `demo-src/scyllasband_graph_js.cpp` is the only code beyond the stock engine. It belongs upstream in `libscyllasband` eventually.
 - **ONNX Runtime Web:** the CPU path uses the `/wasm` build (`ort.wasm.min.mjs`); the default `onnxruntime-web` import (JSEP) gave wrong results with the v2-20261006 graphs. The GPU path uses the `jspi` and `webgpu` builds, whose outputs match ONNX Runtime on the CPU for every graph of the `webgpu/` bundle.
 

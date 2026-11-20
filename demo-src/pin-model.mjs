@@ -1,20 +1,23 @@
 // Pins the demo to one Hugging Face revision of the model: writes site/scyllasband/demo/model-files.json with the commit
-// and, for each bundle the browser can use, the URL, size and sha256 of every file the browser runtime needs:
-//   wasm    the `onnx/` bundle (dynamic INT8), run on the CPU in WebAssembly
-//   webgpu  the `webgpu/` bundle (INT8 weights, float compute), run on the GPU through WebGPU
-// The worker picks one and downloads only that bundle's files.
+// and, for each way the browser can run it, the URL, size and sha256 of every file the browser runtime needs:
+//   wasm    on the CPU in WebAssembly
+//   webgpu  on the GPU through WebGPU
+// Both read the `webgpu/` bundle (8-bit weights, float compute), so they share one download and the browser cache. From v4
+// the `onnx/` bundle is mostly full precision (about twice the size), and its G2P needs a separate weights file. The
+// bundle must keep BigVGAN's weights out of shared_weights.bin (bigvgan_weights.bin), as the `-web` tags do.
 // usage: node demo-src/pin-model.mjs <tag-or-commit>
-//        node demo-src/pin-model.mjs --local <base-url> <onnx-dir> <webgpu-dir>   (testing before an upload; don't commit)
+//        node demo-src/pin-model.mjs --local <base-url> <webgpu-dir> <webgpu-dir>   (testing before an upload; don't commit)
 import { createHash } from 'node:crypto';
 import { readdirSync, readFileSync, statSync, writeFileSync } from 'node:fs';
 import { join, relative } from 'node:path';
 
 const repo = 'spybyscript/scyllasband';
-const FOLDERS = { wasm: 'onnx', webgpu: 'webgpu' };
+const FOLDERS = { wasm: 'webgpu', webgpu: 'webgpu' };
 // The engine reads the manifest and assets; ONNX Runtime needs the graphs and their shared weights. Paths are relative
 // to the bundle folder.
+// The BigVGAN singing decoder (vocoder_bigvgan*, bigvgan_weights.bin) isn't fetched: the browser demo only speaks.
 const wanted = (p) => p === 'manifest.json' || p.startsWith('assets/') ||
-  (p.startsWith('onnx/') && (p.endsWith('.onnx') || p.endsWith('shared_weights.bin')));
+  (p.startsWith('onnx/') && !p.includes('vocoder_bigvgan') && (p.endsWith('.onnx') || p.endsWith('shared_weights.bin')));
 const summary = (files) => ({ bytes: files.reduce((a, f) => a + f.size, 0), files: files.sort((a, b) => a.path.localeCompare(b.path)) });
 
 async function fromHub(ref) {
@@ -39,7 +42,7 @@ async function fromHub(ref) {
     }
     flavors[flavor] = { folder, ...summary(files) };
   }
-  const manifest = await (await fetch(`https://huggingface.co/${repo}/resolve/${sha}/onnx/manifest.json`)).json();
+  const manifest = await (await fetch(`https://huggingface.co/${repo}/resolve/${sha}/webgpu/manifest.json`)).json();
   return { repo, ref, revision: sha, model_version: manifest.model_version, contract_version: manifest.contract_version, flavors };
 }
 

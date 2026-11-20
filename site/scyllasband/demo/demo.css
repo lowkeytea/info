@@ -91,3 +91,22 @@ input[type="range"] { width: 100%; accent-color: var(--red); }
 @media (max-width: 420px) {
   .field-row, .axes { grid-template-columns: 1fr; }
 }
+
+/* Links under the heading, example texts, the trim note, recent clips and the embedded-page note. */
+.demo-links { margin-top: 18px; }
+.examples { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-bottom: 4px; }
+.examples-label { color: var(--muted); font-size: .9rem; font-weight: 600; margin-right: 2px; }
+.examples button {
+  padding: 5px 13px; border: 1.5px solid var(--line-soft); border-radius: 999px; background: var(--paper); color: var(--ink);
+  font: inherit; font-size: .9rem; font-weight: 700; cursor: pointer;
+}
+.examples button:hover { border-color: var(--line); color: var(--link); }
+.trimmed:not(:empty) { margin-left: 10px; color: var(--ink); font-weight: 700; }
+.clips h3 { margin: 0 0 4px; font-size: 1.1rem; font-weight: 800; }
+.clips ol { margin: 12px 0 0; padding: 0; list-style: none; display: grid; gap: 8px; }
+.clips li { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 14px; padding: 8px 12px; border: 1.5px solid var(--line-soft); border-radius: 12px; }
+.clips li[aria-current="true"] { border-color: var(--line); }
+.clips .clip-play { padding: 0; border: 0; background: none; color: var(--link); font: inherit; font-weight: 800; cursor: pointer; text-align: left; }
+.clips .clip-text { flex: 1 1 14rem; min-width: 0; color: var(--muted); font-size: .88rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.clips a { font-size: .9rem; font-weight: 700; }
+.embedded-note { margin: 20px 0 0; color: var(--ink); font-weight: 600; }
